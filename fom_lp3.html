@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overcome Your Fear of Money - Free 10-Day Journaling Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+
+        .dark-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -3px rgba(239, 68, 68, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+
+        .star-bg {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(270deg, #f59e0b, #ef4444, #8b5cf6);
+            background-size: 600% 600%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .clip-path-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .clip-path-wave {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 75% 100%, 50% 95%, 25% 100%, 0 90%);
+        }
+    </style>
+</head>
+
+<body class="star-bg">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="h-10 w-10 rounded-lg gradient-bg flex items-center justify-center mr-3">
+                    <span class="text-white font-bold text-xl">J</span>
+                </div>
+                <span class="font-bold text-xl">MoneyMind Journal</span>
+            </div>
+            <button onclick="scrollToForm()" class="btn-primary px-6 py-2 rounded-full text-white font-medium">
+                Get Free Journal
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <div class="inline-block px-4 py-1 bg-slate-800/80 rounded-full border border-slate-700">
+                        <p class="text-amber-400 font-medium text-sm">FOR THOSE STRUGGLING WITH FINANCIAL ANXIETY</p>
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight">
+                        Transform Your <span class="gradient-text">Money Mindset</span> in 10 Days
+                    </h1>
+
+                    <p class="text-xl text-slate-300">
+                        Discover a free 26-page 10-day journaling guide with powerful prompts to shift from financial
+                        fear to confidence, trusted by hundreds.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <button onclick="scrollToForm()"
+                            class="btn-primary px-8 py-4 rounded-xl text-white font-semibold text-lg">
+                            Get Your Free Journal Now
+                        </button>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="flex -space-x-3">
+                                <div
+                                    class="w-10 h-10 rounded-full border-2 border-slate-800 bg-gradient-to-r from-amber-400 to-red-400 flex items-center justify-center text-white font-medium">
+                                    JD</div>
+                                <div
+                                    class="w-10 h-10 rounded-full border-2 border-slate-800 bg-gradient-to-r from-amber-400 to-red-400 flex items-center justify-center text-white font-medium">
+                                    KM</div>
+                                <div
+                                    class="w-10 h-10 rounded-full border-2 border-slate-800 bg-gradient-to-r from-amber-400 to-red-400 flex items-center justify-center text-white font-medium">
+                                    TS</div>
+                            </div>
+                            <span class="text-slate-300">Joined by 1,000+ readers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute -top-10 -left-10 w-20 h-20 bg-amber-400/20 rounded-full blur-sm"></div>
+                    <div class="absolute -bottom-5 -right-5 w-32 h-32 bg-red-400/20 rounded-full blur-sm"></div>
+
+                    <div class="dark-card rounded-3xl p-8 relative floating">
+                        <div
+                            class="absolute -top-4 -right-4 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+
+                        <img src="Cover.jpg" alt="Overcome Your Fear of Money 10-Day Journaling Guide"
+                            class="w-full h-auto rounded-2xl" loading="lazy"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x500/f59e0b/ffffff?text=Journal+Cover';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-24 bg-slate-900 clip-path-diagonal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">Do These <span class="gradient-text">Money Struggles</span> Feel
+                    Familiar?</h2>
+                <p class="text-xl text-slate-300">
+                    If you’re facing these challenges, journaling can help you break free.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Financial Anxiety</h3>
+                    <p class="text-slate-300">
+                        You feel a knot in your stomach when checking your bank balance or avoid it altogether.
+                    </p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Self-Sabotaging Patterns</h3>
+                    <p class="text-slate-300">
+                        You repeat the same financial mistakes despite knowing better, creating frustration.
+                    </p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Scarcity Mindset</h3>
+                    <p class="text-slate-300">
+                        You constantly worry there’s never enough money, even when your needs are met.
+                    </p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Money Shame</h3>
+                    <p class="text-slate-300">
+                        You feel embarrassed about your finances and avoid money conversations.
+                    </p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Financial Dependence</h3>
+                    <p class="text-slate-300">
+                        You rely on others for financial decisions or feel trapped in financial relationships.
+                    </p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Decision Paralysis</h3>
+                    <p class="text-slate-300">
+                        You freeze when making financial decisions due to overwhelming fear.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button onclick="scrollToForm()"
+                    class="btn-primary px-10 py-4 rounded-xl text-white font-semibold text-lg">
+                    Start Journaling to Break Free
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Traditional Solutions Fail -->
+    <section class="py-24 bg-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-block px-4 py-1 bg-slate-700 rounded-full mb-6">
+                        <p class="text-amber-400 font-medium text-sm">WHY JOURNALING WORKS</p>
+                    </div>
+
+                    <h2 class="text-4xl font-bold mb-8">Why Budgeting Alone Isn’t Enough</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Apps Don’t Address Emotions</h3>
+                                <p class="text-slate-300">Budgeting tools track spending but can’t uncover the emotional
+                                    triggers driving your financial choices.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Knowledge Isn’t Action</h3>
+                                <p class="text-slate-300">You may understand finances but feel paralyzed by
+                                    fear—journaling bridges the gap to action.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Generic Advice Fails</h3>
+                                <p class="text-slate-300">Standard tips ignore your unique money story—journaling
+                                    reveals and reshapes it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2">
+                    <div class="dark-card rounded-3xl p-8 glow">
+                        <div class="flex items-center mb-8">
+                            <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold">The Solution: Journaling</h3>
+                        </div>
+
+                        <p class="text-slate-300 mb-8">
+                            Our 10-day journaling guide uses powerful prompts to uncover emotional blocks, reframe
+                            limiting beliefs, and build lasting financial confidence through daily reflection.
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400 mr-3" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Uncovers hidden money beliefs</span>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400 mr-3" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Guides emotional breakthroughs</span>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400 mr-3" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Builds daily reflective habits</span>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400 mr-3" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Fosters sustainable confidence</span>
+                            </div>
+                        </div>
+
+                        <button onclick="scrollToForm()"
+                            class="btn-primary w-full py-4 rounded-xl text-white font-semibold">
+                            Start Journaling Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Get Section -->
+    <section class="py-24 animated-gradient clip-path-wave">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold mb-6">What's Inside Your Free Journaling Guide</h2>
+                <p class="text-xl">
+                    A 10-day journey to shift your money mindset, plus three powerful bonuses.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mr-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">10-Day Journaling Guide</h3>
+                            <p class="text-slate-300">26 pages of powerful prompts</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-amber-400 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Daily prompts to uncover financial fears</span>
+                        </li>
+
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-amber-400 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Reflective exercises for mindset shifts</span>
+                        </li>
+
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-amber-400 mr-3 flex-shrink-0 mt-0.5" fill="none"
+                                viewBox="0 0 24  благодарность и осознанность prompts to foster gratitude and awareness">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Guided steps to build financial confidence</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 card-hover">
+                    <h3 class="text-2xl font-bold mb-8">Plus These 3 Powerful Bonuses:</h3>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div
+                                class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Beginner’s Guide to a 30-Day Savings Challenge
+                                </h4>
+                                <p class="text-slate-300">Build a savings habit with this guided sheet.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Money Trigger Tracker Cheat Sheet</h4>
+                                <p class="text-slate-300">Identify money triggers with a structured, at-a-glance
+                                    worksheet.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Quick Money Affirmations for Beginners</h4>
+                                <p class="text-slate-300">Reinforce the mindset shift from fear to abundance,
+                                    complementing the journal’s gratitude and awareness prompts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="scrollToForm()"
+                    class="btn-primary px-10 py-5 rounded-xl text-white font-semibold text-lg">
+                    Get Your Journal + Bonuses Free
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-block px-4 py-1 bg-slate-800 rounded-full mb-6">
+                    <p class="text-amber-400 font-medium text-sm">SUCCESS STORIES</p>
+                </div>
+                <h2 class="text-4xl font-bold mb-6">How Journaling Changed Their Money Mindset</h2>
+                <p class="text-xl text-slate-300">
+                    Real stories from people who used journaling to overcome financial fear.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="dark-card rounded-3xl p-8 card-hover">
+                    <div class="flex mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+
+                    <p class="text-slate-300 mb-8">
+                        "The journaling prompts helped me uncover why I was so anxious about money. By day 10, I felt
+                        calmer and more in control of my finances."
+                    </p>
+
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">JM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Jessica M.</h4>
+                            <p class="text-sm text-slate-400">Marketing Specialist</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dark-card rounded-3xl p-8 card-hover">
+                    <div class="flex mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+
+                    <p class="text-slate-300 mb-8">
+                        "The Money Trigger Tracker helped me see patterns in my spending stress. Journaling daily gave
+                        me clarity and stopped my financial self-sabotage."
+                    </p>
+
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">DT</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">David T.</h4>
+                            <p class="text-sm text-slate-400">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dark-card rounded-3xl p-8 card-hover">
+                    <div class="flex mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+
+                    <p class="text-slate-300 mb-8">
+                        "The journaling guide’s prompts made me face my money shame. It was tough but worth it—now I
+                        make financial choices with confidence."
+                    </p>
+
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">SR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah R.</h4>
+                            <p class="text-sm text-slate-400">Healthcare Professional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Creator -->
+    <section class="py-24 bg-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/3">
+                        <div class="relative">
+                            <div
+                                class="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-amber-500/30 relative z-10">
+                                <img src="Profile.png" alt="Lize Vermeulen Profile"
+                                    class="w-full h-full rounded-full object-cover" loading="lazy"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/160x160/1e293b/f59e0b?text=Profile';">
+                            </div>
+                            <div class="absolute top-0 left-0 w-full h-full">
+                                <div class="w-16 h-16 bg-amber-400/20 rounded-full absolute -top-4 -right-4 blur-sm">
+                                </div>
+                                <div class="w-12 h-12 bg-red-400/20 rounded-full absolute -bottom-2 -left-2 blur-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-2/3">
+                        <div class="inline-block px-4 py-1 bg-slate-700 rounded-full mb-4">
+                            <p class="text-amber-400 font-medium text-sm">CERTIFIED CREATIVE COACH</p>
+                        </div>
+
+                        <h2 class="text-3xl font-bold mb-6">Meet Lize Vermeulen</h2>
+
+                        <p class="text-slate-300 mb-4">
+                            As a Certified Creative Coach specializing in financial mindset transformation, I've guided
+                            hundreds to shift their money mindset through journaling.
+                        </p>
+
+                        <p class="text-slate-300 mb-4">
+                            I once struggled with paralyzing money anxiety. Through daily journaling prompts, I reframed
+                            my fears and built financial confidence, and now I help others do the same.
+                        </p>
+
+                        <p class="text-slate-300 mb-6">
+                            This free 10-day journaling guide offers the transformative prompts that have empowered my
+                            clients to overcome financial fear.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form Section -->
+    <section id="download-form" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full">
+            <div class="absolute top-20 left-20 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto">
+                <div class="dark-card rounded-3xl overflow-hidden glow">
+                    <div class="animated-gradient p-8 text-center">
+                        <h2 class="text-3xl font-bold mb-2">Get Your Free 10-Day Journaling Guide</h2>
+                        <p class="text-lg opacity-90">Plus 3 powerful bonuses to transform your money mindset</p>
+                    </div>
+
+                    <div class="p-8">
+                        <iframe src="https://products.innercanvascoaching.com/widget/form/hFmHDOMUjeZqzcGdoGUz"
+                            style="width:100%;height:419px;border:none;border-radius:4px"
+                            id="inline-hFmHDOMUjeZqzcGdoGUz" data-layout="{'id':'INLINE'}"
+                            data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated"
+                            data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value=""
+                            data-form-name="fom-lead-free" data-height="419"
+                            data-layout-iframe-id="inline-hFmHDOMUjeZqzcGdoGUz" data-form-id="hFmHDOMUjeZqzcGdoGUz"
+                            title="fom-lead-free">
+                        </iframe>
+                        <div class="flex items-center justify-center space-x-2 text-center mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <p class="text-sm text-slate-400">
+                                Your information is secure and will never be shared
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
+                <p class="text-xl text-slate-300">
+                    Everything you need to know about the 10-day journaling guide.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <h3 class="font-bold text-xl mb-3">Is this journal really free?</h3>
+                    <p class="text-slate-300">Yes, the 10-day journaling guide and all three bonuses are completely
+                        free. No hidden costs.</p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <h3 class="font-bold text-xl mb-3">How will I receive the journal?</h3>
+                    <p class="text-slate-300">After submitting the form, you'll receive an email with links to download
+                        the journal and bonuses instantly.</p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <h3 class="font-bold text-xl mb-3">How long will it take to see results?</h3>
+                    <p class="text-slate-300">Many feel clarity within days, with deeper mindset shifts by completing
+                        the 10-day journal.</p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <h3 class="font-bold text-xl mb-3">Do I need financial knowledge?</h3>
+                    <p class="text-slate-300">No. The journal is beginner-friendly, using prompts to explore your money
+                        mindset.</p>
+                </div>
+
+                <div class="dark-card rounded-2xl p-8 card-hover">
+                    <h3 class="font-bold text-xl mb-3">Will this help with problems like debt?</h3>
+                    <p class="text-slate-300">The journal focuses on mindset, but a clearer mindset often leads to
+                        better financial decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 animated-gradient text-center">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">Ready to Shift Your Money Mindset?</h2>
+                <p class="text-xl mb-10">
+                    Start your free 10-day journaling guide to reframe your fears and build financial confidence through
+                    powerful prompts.
+                </p>
+                <button onclick="scrollToForm()" class="btn-primary px-10 py-5 rounded-xl font-semibold text-lg pulse">
+                    Get Your Free Journal + 3 Bonuses
+                </button>
+
+                <div class="mt-10 flex flex-wrap justify-center gap-8">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Instant Download</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>100% Free</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Beginner-Friendly</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <div class="h-10 w-10 rounded-lg gradient-bg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">J</span>
+                    </div>
+                    <span class="font-bold text-xl">Lize Vermeulen | Certified Creative Coach</span>
+                </div>
+                <div class="text-sm text-slate-400">
+                    <p>© 2025 All Rights Reserved</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-400">
+                <p>This journal is provided for educational purposes only and is not financial advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Form Embed Script -->
+    <script src="https://products.innercanvascoaching.com/js/form_embed.js"></script>
+    <script>
+        // Function to scroll to the form
+        function scrollToForm() {
+            document.getElementById('download-form').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'930a980824d173dd',t:'MTc0NDcxMTIwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
