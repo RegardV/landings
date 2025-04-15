@@ -1,1 +1,1 @@
-A set of lannding pages built for inner canvas journals.
+A set of landing pages built for inner canvas journals.
