@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lize Vermeulen | Creative Journals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8a6d5f',
+                        secondary: '#d4c1b8',
+                        accent: '#e8d3c7',
+                        dark: '#3d3d3d',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'Arial', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                        handwritten: ['Segoe Script', 'Brush Script MT', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #3d3d3d;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .handwritten {
+            font-family: 'Segoe Script', 'Brush Script MT', cursive;
+        }
+        
+        .journal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #8a6d5f;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .benefit-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+            color: #8a6d5f;
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-semibold text-primary handwritten">Lize Vermeulen</a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link text-dark hover:text-primary transition">Home</a>
+                <a href="#shop" class="nav-link text-dark hover:text-primary transition">Shop</a>
+                <a href="#about" class="nav-link text-dark hover:text-primary transition">About</a>
+                <a href="#coaching" class="nav-link text-dark hover:text-primary transition">Coaching</a>
+                <a href="#contact" class="nav-link text-dark hover:text-primary transition">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="text-dark hover:text-primary transition">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="text-dark hover:text-primary transition">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="bg-primary text-white rounded-full w-5 h-5 text-xs flex items-center justify-center absolute -mt-8 ml-3">0</span>
+                </button>
+                <button class="md:hidden text-dark hover:text-primary transition" id="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-3 shadow-inner">
+            <div class="flex flex-col space-y-3">
+                <a href="#" class="text-dark hover:text-primary transition">Home</a>
+                <a href="#shop" class="text-dark hover:text-primary transition">Shop</a>
+                <a href="#about" class="text-dark hover:text-primary transition">About</a>
+                <a href="#coaching" class="text-dark hover:text-primary transition">Coaching</a>
+                <a href="#contact" class="text-dark hover:text-primary transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-accent">
+        <div class="container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 leading-tight">Journal Your Way to Clarity</h1>
+                <p class="text-lg md:text-xl mb-6 text-dark/80">Beautifully crafted journals designed to unlock your creativity and guide you toward self-discovery.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#shop" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition text-center">Shop Journals</a>
+                    <a href="#about" class="border border-primary text-primary hover:bg-primary/10 font-medium py-3 px-6 rounded-md transition text-center">Learn More</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="relative z-10">
+                    <svg class="absolute -top-10 -left-10 text-secondary w-24 h-24 opacity-50" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                    </svg>
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform rotate-3 relative z-10">
+                        <svg class="w-full h-auto" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="380" height="480" x="10" y="10" rx="5" fill="#d4c1b8" />
+                            <rect width="360" height="460" x="20" y="20" rx="3" fill="#f5f5f0" />
+                            <line x1="40" y1="60" x2="360" y2="60" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="100" x2="360" y2="100" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="140" x2="360" y2="140" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="180" x2="360" y2="180" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="220" x2="360" y2="220" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="260" x2="360" y2="260" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="300" x2="360" y2="300" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="340" x2="360" y2="340" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="380" x2="360" y2="380" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="420" x2="360" y2="420" stroke="#ccc" stroke-width="1" />
+                            <line x1="40" y1="460" x2="360" y2="460" stroke="#ccc" stroke-width="1" />
+                            <text x="200" y="40" font-family="cursive" font-size="18" text-anchor="middle" fill="#8a6d5f">My Creative Journey</text>
+                        </svg>
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 bg-white p-3 rounded-lg shadow-lg transform -rotate-6 z-0">
+                        <svg class="w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="90" height="100" x="5" y="0" rx="3" fill="#8a6d5f" />
+                            <rect width="80" height="90" x="10" y="5" rx="2" fill="#f5f5f0" />
+                            <line x1="20" y1="20" x2="80" y2="20" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="30" x2="80" y2="30" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="40" x2="80" y2="40" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="50" x2="80" y2="50" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="60" x2="80" y2="60" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="70" x2="80" y2="70" stroke="#ccc" stroke-width="0.5" />
+                            <line x1="20" y1="80" x2="80" y2="80" stroke="#ccc" stroke-width="0.5" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-stone-50 to-transparent"></div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="py-16 bg-stone-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Our Featured Journals</h2>
+                <p class="text-dark/70 max-w-2xl mx-auto">Discover our most loved journals, each designed to inspire creativity and mindfulness in your daily practice.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Journal 1 -->
+                <div class="journal-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-64 bg-secondary/30 flex items-center justify-center p-6">
+                        <svg class="w-full h-auto max-h-full" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="180" height="240" x="10" y="5" rx="3" fill="#8a6d5f" />
+                            <rect width="170" height="230" x="15" y="10" rx="2" fill="#f5f5f0" />
+                            <text x="100" y="125" font-family="cursive" font-size="14" text-anchor="middle" fill="#8a6d5f">Daily Reflections</text>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Daily Reflections Journal</h3>
+                            <span class="text-primary font-medium">$24.99</span>
+                        </div>
+                        <p class="text-dark/70 mb-4">Guided prompts for daily reflection and gratitude practice.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-xs text-dark/60 ml-2">(42)</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary/90 text-white rounded-full w-10 h-10 flex items-center justify-center transition">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Journal 2 -->
+                <div class="journal-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-64 bg-secondary/30 flex items-center justify-center p-6">
+                        <svg class="w-full h-auto max-h-full" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="180" height="240" x="10" y="5" rx="3" fill="#d4c1b8" />
+                            <rect width="170" height="230" x="15" y="10" rx="2" fill="#f5f5f0" />
+                            <text x="100" y="125" font-family="cursive" font-size="14" text-anchor="middle" fill="#8a6d5f">Creative Dreams</text>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Creative Dreams Journal</h3>
+                            <span class="text-primary font-medium">$29.99</span>
+                        </div>
+                        <p class="text-dark/70 mb-4">Unlock your creative potential with inspiring prompts and exercises.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-xs text-dark/60 ml-2">(37)</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary/90 text-white rounded-full w-10 h-10 flex items-center justify-center transition">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Journal 3 -->
+                <div class="journal-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-64 bg-secondary/30 flex items-center justify-center p-6">
+                        <svg class="w-full h-auto max-h-full" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="180" height="240" x="10" y="5" rx="3" fill="#e8d3c7" />
+                            <rect width="170" height="230" x="15" y="10" rx="2" fill="#f5f5f0" />
+                            <text x="100" y="125" font-family="cursive" font-size="14" text-anchor="middle" fill="#8a6d5f">Mindful Moments</text>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Mindful Moments Journal</h3>
+                            <span class="text-primary font-medium">$22.99</span>
+                        </div>
+                        <p class="text-dark/70 mb-4">Practice mindfulness and presence with guided exercises.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-xs text-dark/60 ml-2">(29)</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary/90 text-white rounded-full w-10 h-10 flex items-center justify-center transition">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-8 rounded-md transition">View All Journals</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Coaching Connection -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-2/5">
+                    <div class="relative">
+                        <div class="bg-secondary/30 rounded-lg p-6 relative z-10">
+                            <svg class="w-full" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="150" cy="150" r="140" fill="#f5f5f0" />
+                                <circle cx="150" cy="150" r="135" fill="none" stroke="#8a6d5f" stroke-width="1" />
+                                <path d="M150,30 Q220,80 240,150 Q220,220 150,270 Q80,220 60,150 Q80,80 150,30" fill="none" stroke="#8a6d5f" stroke-width="2" />
+                                <circle cx="150" cy="150" r="80" fill="#d4c1b8" opacity="0.3" />
+                                <text x="150" y="145" font-family="serif" font-size="16" text-anchor="middle" fill="#3d3d3d">Lize</text>
+                                <text x="150" y="165" font-family="serif" font-size="16" text-anchor="middle" fill="#3d3d3d">Vermeulen</text>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white p-3 rounded-full shadow-md">
+                            <svg class="w-16 h-16" viewBox="0 0 24 24" fill="#8a6d5f">
+                                <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-4">Meet Your Creative Coach</h2>
+                    <p class="text-dark/80 mb-6">Hi, I'm Lize Vermeulen, a certified creative coach passionate about helping people unlock their creative potential through journaling and mindfulness practices.</p>
+                    <p class="text-dark/80 mb-6">Each journal I create is designed with intention, drawing from my experience guiding clients through creative blocks and self-discovery journeys. These aren't just blank pages—they're pathways to clarity, creativity, and personal growth.</p>
+                    <div class="bg-accent/30 p-6 rounded-lg border-l-4 border-primary mb-6">
+                        <p class="italic text-dark/90">"Journaling transformed my own creative practice, and I've seen it work wonders for my coaching clients. That's why I'm passionate about creating journals that truly support your unique journey."</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#coaching" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition text-center">Learn About Coaching</a>
+                        <a href="#contact" class="border border-primary text-primary hover:bg-primary/10 font-medium py-3 px-6 rounded-md transition text-center">Contact Lize</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits of Journaling -->
+    <section class="py-16 bg-accent/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Why Journal?</h2>
+                <p class="text-dark/70 max-w-2xl mx-auto">Discover how a consistent journaling practice can transform your creativity and wellbeing.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Benefit 1 -->
+                <div class="benefit-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-16 h-16 bg-secondary/30 rounded-full flex items-center justify-center">
+                            <i class="fas fa-brain text-2xl benefit-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Clarity of Thought</h3>
+                    <p class="text-dark/70">Transform scattered thoughts into clear insights through regular journaling.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-16 h-16 bg-secondary/30 rounded-full flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-2xl benefit-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Creative Inspiration</h3>
+                    <p class="text-dark/70">Unlock your creative potential and discover new ideas through guided prompts.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-16 h-16 bg-secondary/30 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heart text-2xl benefit-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Emotional Wellbeing</h3>
+                    <p class="text-dark/70">Process emotions and reduce stress through expressive writing practices.</p>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="benefit-card bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-16 h-16 bg-secondary/30 rounded-full flex items-center justify-center">
+                            <i class="fas fa-bullseye text-2xl benefit-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Goal Achievement</h3>
+                    <p class="text-dark/70">Track progress and stay accountable to your creative and personal goals.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block text-primary hover:text-primary/80 font-medium transition">
+                    <span>Download Free Journaling Guide</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">What Our Journalers Say</h2>
+                <p class="text-dark/70 max-w-2xl mx-auto">Hear from people who have transformed their creative practice with our journals.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-accent/20 p-6 rounded-lg relative">
+                    <div class="absolute -top-4 left-6 text-4xl text-primary opacity-30">"</div>
+                    <p class="text-dark/80 mb-4 relative z-10">The Creative Dreams Journal completely transformed my morning routine. The prompts are thoughtful and have helped me tap into creativity I didn't know I had.</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary font-semibold mr-3">SM</div>
+                        <div>
+                            <h4 class="font-medium">Sarah M.</h4>
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-accent/20 p-6 rounded-lg relative">
+                    <div class="absolute -top-4 left-6 text-4xl text-primary opacity-30">"</div>
+                    <p class="text-dark/80 mb-4 relative z-10">As an artist who often experiences creative blocks, the Mindful Moments Journal has been a game-changer. I use it before starting any new project.</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary font-semibold mr-3">JT</div>
+                        <div>
+                            <h4 class="font-medium">James T.</h4>
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-accent/20 p-6 rounded-lg relative">
+                    <div class="absolute -top-4 left-6 text-4xl text-primary opacity-30">"</div>
+                    <p class="text-dark/80 mb-4 relative z-10">I started with Lize's coaching sessions and then purchased her Daily Reflections Journal. The combination has helped me finally finish my novel!</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary font-semibold mr-3">EL</div>
+                        <div>
+                            <h4 class="font-medium">Emma L.</h4>
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Section -->
+    <section id="coaching" class="py-16 bg-secondary/30">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-4">Enhance Your Journey with Creative Coaching</h2>
+                    <p class="text-dark/80 mb-6">While journals are powerful tools for self-discovery, sometimes you need personalized guidance. As a certified creative coach, I offer one-on-one sessions to help you:</p>
+                    
+                    <ul class="mb-6 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Break through creative blocks and limiting beliefs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Develop personalized journaling practices for your specific goals</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Transform your relationship with creativity and self-expression</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Create sustainable creative habits that fit your lifestyle</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+                        <p class="text-primary font-medium">Special offer: 15% off your first coaching session when you purchase any journal!</p>
+                    </div>
+                    
+                    <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition">Book a Session</a>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-4">Coaching Packages</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Package 1 -->
+                            <div class="border-b border-gray-200 pb-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-xl font-medium">Single Discovery Session</h4>
+                                    <span class="text-primary font-semibold">$95</span>
+                                </div>
+                                <p class="text-dark/70 mb-2">A 60-minute session to identify your creative goals and develop an initial action plan.</p>
+                                <button class="text-primary hover:text-primary/80 font-medium transition text-sm">Learn More →</button>
+                            </div>
+                            
+                            <!-- Package 2 -->
+                            <div class="border-b border-gray-200 pb-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-xl font-medium">Creative Breakthrough</h4>
+                                    <span class="text-primary font-semibold">$250</span>
+                                </div>
+                                <p class="text-dark/70 mb-2">Three sessions to overcome blocks and establish a sustainable creative practice.</p>
+                                <div class="flex items-center text-sm text-dark/60 mb-2">
+                                    <i class="fas fa-gift text-primary mr-2"></i>
+                                    <span>Includes a complimentary Creative Dreams Journal</span>
+                                </div>
+                                <button class="text-primary hover:text-primary/80 font-medium transition text-sm">Learn More →</button>
+                            </div>
+                            
+                            <!-- Package 3 -->
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-xl font-medium">Creative Transformation</h4>
+                                    <span class="text-primary font-semibold">$450</span>
+                                </div>
+                                <p class="text-dark/70 mb-2">Six sessions over three months for deep creative transformation and project completion.</p>
+                                <div class="flex items-center text-sm text-dark/60 mb-2">
+                                    <i class="fas fa-gift text-primary mr-2"></i>
+                                    <span>Includes complete journal collection and personalized prompts</span>
+                                </div>
+                                <button class="text-primary hover:text-primary/80 font-medium transition text-sm">Learn More →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-accent/40 p-8 md:p-12 rounded-lg text-center">
+                <h2 class="text-3xl font-semibold mb-3">Join Our Creative Community</h2>
+                <p class="text-dark/80 mb-6">Subscribe to receive journaling prompts, creative inspiration, and exclusive offers.</p>
+                
+                <form class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-primary" required>
+                        <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition whitespace-nowrap">Get 10% Off</button>
+                    </div>
+                    <p class="text-xs text-dark/60 mt-3">By subscribing, you'll receive a free journaling guide and 10% off your first order.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-stone-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Get in Touch</h2>
+                <p class="text-dark/70 max-w-2xl mx-auto">Have questions about our journals or coaching services? We'd love to hear from you.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div class="md:col-span-1">
+                    <div class="bg-white p-6 rounded-lg shadow-sm h-full">
+                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <a href="mailto:hello@lizevermeulen.com" class="text-primary hover:text-primary/80 transition">hello@lizevermeulen.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-3">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <a href="tel:+1234567890" class="text-primary hover:text-primary/80 transition">+1 (234) 567-890</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p class="text-dark/70">Creative Studio, 123 Inspiration Ave, Mindful City</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium mb-3">Follow Us</h4>
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="md:col-span-2">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
+                        
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-dark/70 mb-1">Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-primary" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-dark/70 mb-1">Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-primary" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-dark/70 mb-1">Subject</label>
+                                <select id="subject" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-primary">
+                                    <option value="">Select a subject</option>
+                                    <option value="journals">Journal Inquiry</option>
+                                    <option value="coaching">Coaching Services</option>
+                                    <option value="wholesale">Wholesale Orders</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-dark/70 mb-1">Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-primary" required></textarea>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="newsletter" class="mr-2">
+                                <label for="newsletter" class="text-sm text-dark/70">Subscribe to our newsletter for journaling tips and exclusive offers</label>
+                            </div>
+                            
+                            <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition">Send Message</button>
+                        </form>
+                        
+                        <div class="mt-4 text-center text-sm text-dark/60">
+                            <p>This is a sample contact form. In a live version, this would send your message directly to Lize.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 handwritten">Lize Vermeulen</h3>
+                    <p class="text-white/70 mb-4">Certified Creative Coach and Journal Designer helping you unlock your creative potential.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-white transition">All Journals</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Guided Journals</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Blank Journals</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Journal Sets</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-lg font-medium mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Our Story</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Coaching Services</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Testimonials</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Help</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm">
+                <p>&copy; 2023 Lize Vermeulen Creative Journals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Form submission handling
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formType = form.querySelector('button').textContent.includes('10%') ? 'newsletter' : 'contact';
+                
+                // Simple form validation
+                let isValid = true;
+                form.querySelectorAll('[required]').forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (isValid) {
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'mt-4 p-3 bg-green-100 text-green-800 rounded-md';
+                    
+                    if (formType === 'newsletter') {
+                        successMessage.textContent = 'Thank you for subscribing! Check your email for your 10% discount code.';
+                    } else {
+                        successMessage.textContent = 'Thank you for your message! We\'ll get back to you soon.';
+                    }
+                    
+                    form.appendChild(successMessage);
+                    form.reset();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                }
+            });
+        });
+        
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.journal-card button');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const cartCount = document.querySelector('.fa-shopping-bag + span');
+                const currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                
+                // Show mini notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 right-4 bg-primary text-white py-2 px-4 rounded-md shadow-lg z-50 animate-fade-in-out';
+                notification.textContent = 'Journal added to cart!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+        });
+        
+        // Add animation class
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateY(-20px); }
+                    10% { opacity: 1; transform: translateY(0); }
+                    90% { opacity: 1; transform: translateY(0); }
+                    100% { opacity: 0; transform: translateY(-20px); }
+                }
+                .animate-fade-in-out {
+                    animation: fadeInOut 3s ease-in-out forwards;
+                }
+            </style>
+        `);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93144aad178406f7',t:'MTc0NDgxMjg5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
