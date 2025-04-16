@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lize Vermeulen | Creative Coaching & Journals</title>
+    <meta name="description" content="Explore creative coaching services and guided journals by Lize Vermeulen to unlock your creative potential and manage anxiety.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            DEFAULT: '#26a69a',
+                            light: '#e0f2f1',
+                            medium: '#b2dfdb'
+                        },
+                        cream: '#f9f7f4',
+                        charcoal: '#333333',
+                        yellow: '#f4e4bc',
+                        red: '#e53e3e',
+                        terracotta: '#e07a5f',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        handwritten: ['Caveat', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f7f4;
+            color: #333333;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: #2c3e50;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #26a69a;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: #26a69a;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e8e82;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .link-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .paper-texture {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="text-2xl font-semibold handwritten">Lize Vermeulen</a>
+                <span class="ml-2 text-xs bg-teal text-white px-2 py-1 rounded">Creative Coach</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="coaching-home.html" class="nav-link text-charcoal hover:text-teal transition">Coaching Home</a>
+                <a href="journal-aqua.html" class="nav-link text-charcoal hover:text-teal transition">Journal Home</a>
+            </div>
+            
+            <div class="hidden md:block">
+                <a href="coaching-home.html#contact" class="btn-primary px-5 py-2 rounded-md font-medium">Book a Session</a>
+            </div>
+            
+            <button class="md:hidden text-charcoal hover:text-teal transition" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-3 shadow-inner">
+            <div class="flex flex-col space-y-3">
+                <a href="coaching-home.html" class="text-charcoal hover:text-teal transition">Coaching Home</a>
+                <a href="journal-aqua.html" class="text-charcoal hover:text-teal transition">Journal Home</a>
+                <a href="coaching-home.html#contact" class="btn-primary px-5 py-2 rounded-md font-medium text-center mt-2">Book a Session</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative paper-texture">
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-light/90 to-teal-light/70"></div>
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 leading-tight">Unlock Your Creative Potential</h1>
+                    <p class="text-lg md:text-xl mb-6 text-charcoal/80">Explore personalized coaching and guided journals designed to help you break through creative blocks, manage anxiety, and thrive.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="coaching-home.html" class="btn-primary py-3 px-6 rounded-lg font-medium text-center">Discover Coaching</a>
+                        <a href="journal-aqua.html" class="btn-secondary py-3 px-6 rounded-lg font-medium text-center">Explore Journals</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="cover.jpg" alt="Lize Vermeulen with a journal" class="w-full rounded-xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pages Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Explore My Pages</h2>
+                <p class="text-charcoal/70 max-w-2xl mx-auto">Browse through my creative coaching and journaling resources to find the perfect fit for your needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Link to coaching-home.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.jpg" alt="Creative Coaching Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Coaching Home</h3>
+                        <p class="text-charcoal/70 mb-4">Discover personalized creative coaching services to unlock your potential.</p>
+                        <a href="coaching-home.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to coaching-home-2aqua.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.png" alt="Coaching Home 2 Aqua Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Coaching Home 2 Aqua</h3>
+                        <p class="text-charcoal/70 mb-4">A variation of my coaching homepage with an aqua theme.</p>
+                        <a href="coaching-home-2aqua.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to CoachingHomeAlt.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.png" alt="Coaching Home Alt Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Coaching Home Alt</h3>
+                        <p class="text-charcoal/70 mb-4">An alternative coaching homepage design for your creative journey.</p>
+                        <a href="CoachingHomeAlt.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to fom_Lp1.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.jpg" alt="Form LP1 Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP1</h3>
+                        <p class="text-charcoal/70 mb-4">Landing page with a form for inquiries or signups.</p>
+                        <a href="fom_Lp1.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to fom_Lp2.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.png" alt="Form LP2 Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP2</h3>
+                        <p class="text-charcoal/70 mb-4">Another variation of a form landing page for your needs.</p>
+                        <a href="fom_Lp2.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to fom_Lp3.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.jpg" alt="Form LP3 Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP3</h3>
+                        <p class="text-charcoal/70 mb-4">A third form landing page design for alternative layouts.</p>
+                        <a href="fom_Lp3.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to fom_Lp5.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.png" alt="Form LP5 Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP5</h3>
+                        <p class="text-charcoal/70 mb-4">A fifth form landing page option for user engagement.</p>
+                        <a href="fom_Lp5.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to journal-aqua.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.jpg" alt="Journal Aqua Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Journal Aqua</h3>
+                        <p class="text-charcoal/70 mb-4">A guided journal homepage with an aqua theme for anxiety relief.</p>
+                        <a href="journal-aqua.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to journal-aqua2.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.png" alt="Journal Aqua 2 Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Journal Aqua 2</h3>
+                        <p class="text-charcoal/70 mb-4">A second variation of the aqua-themed journal homepage.</p>
+                        <a href="journal-aqua2.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link to JournalshomeOriginal.html -->
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <img src="cover.jpg" alt="Journals Home Original Cover" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Journals Home Original</h3>
+                        <p class="text-charcoal/70 mb-4">The original homepage for guided journals to manage anxiety.</p>
+                        <a href="JournalshomeOriginal.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 handwritten">Lize Vermeulen</h3>
+                    <p class="text-white/70 mb-4">Helping creatives unlock their potential through coaching and guided journaling.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="coaching-home.html" class="text-white/70 hover:text-white transition">Coaching Home</a></li>
+                        <li><a href="journal-aqua.html" class="text-white/70 hover:text-white transition">Journal Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="coaching-home.html#contact" class="text-white/70 hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm">
+                <p>© 2025 Lize Vermeulen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
