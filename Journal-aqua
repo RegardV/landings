@@ -47,6 +47,7 @@
         
         .handwritten {
             font-family: 'Caveat', cursive;
+            color: #2c3e50; /* Navy blue */
         }
         
         .nav-link {
