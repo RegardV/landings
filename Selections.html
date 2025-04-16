@@ -6,33 +6,7 @@
     <title>Page Selections</title>
     <meta name="description" content="A list of available pages including landing pages and other resources.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        teal: {
-                            DEFAULT: '#26a69a',
-                            light: '#e0f2f1',
-                            medium: '#b2dfdb'
-                        },
-                        cream: '#f9f7f4',
-                        charcoal: '#333333',
-                        yellow: '#f4e4bc',
-                        red: '#e53e3e',
-                        terracotta: '#e07a5f',
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        handwritten: ['Caveat', 'cursive'],
-                    },
-                }
-            }
-        }
-    </script>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -49,37 +23,6 @@
             color: #2c3e50;
         }
         
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #26a69a;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .btn-primary {
-            background-color: #26a69a;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: #1e8e82;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
         .link-card {
             transition: all 0.3s ease;
             border-radius: 12px;
@@ -89,29 +32,23 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        
-        .paper-texture {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-        }
     </style>
 </head>
 <body>
-    <!-- Pages Section -->
+    <!-- Homepages Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Page Selections</h2>
-                <p class="text-charcoal/70 max-w-2xl mx-auto">Browse through the available pages, grouped by landing pages and other resources.</p>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Homepages</h2>
+                <p class="text-charcoal/70 max-w-2xl mx-auto">Browse through the available homepage designs.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Other Remaining Pages -->
                 <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Cover</h3>
-                        <p class="text-charcoal/70 mb-4">A cover page for the project.</p>
-                        <a href="cover.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                        <h3 class="text-xl font-semibold mb-2">Coaching Home 2 Aqua</h3>
+                        <p class="text-charcoal/70 mb-4">A variation of my coaching homepage with an aqua theme.</p>
+                        <a href="coaching-home-2aqua.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
                             <span>Visit Page</span>
                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -122,75 +59,9 @@
 
                 <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Profile</h3>
-                        <p class="text-charcoal/70 mb-4">A profile page for the project.</p>
-                        <a href="profile.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
-                            <span>Visit Page</span>
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">README</h3>
-                        <p class="text-charcoal/70 mb-4">The README file content as a page.</p>
-                        <a href="readme.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
-                            <span>Visit Page</span>
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Landing Pages (LP) -->
-                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Form LP1</h3>
-                        <p class="text-charcoal/70 mb-4">Landing page with a form for inquiries or signups.</p>
-                        <a href="fom_Lp1.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
-                            <span>Visit Page</span>
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Form LP2</h3>
-                        <p class="text-charcoal/70 mb-4">Another variation of a form landing page for your needs.</p>
-                        <a href="fom_Lp2.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
-                            <span>Visit Page</span>
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Form LP3</h3>
-                        <p class="text-charcoal/70 mb-4">A third form landing page design for alternative layouts.</p>
-                        <a href="fom_Lp3.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
-                            <span>Visit Page</span>
-                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Form LP5</h3>
-                        <p class="text-charcoal/70 mb-4">A fifth form landing page option for user engagement.</p>
-                        <a href="fom_Lp5.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                        <h3 class="text-xl font-semibold mb-2">Coaching Home Alt</h3>
+                        <p class="text-charcoal/70 mb-4">An alternative coaching homepage design for your creative journey.</p>
+                        <a href="CoachingHomeAlt.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
                             <span>Visit Page</span>
                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -237,12 +108,24 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Landing Pages (LP) Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3">Landing Pages (LP)</h2>
+                <p class="text-charcoal/70 max-w-2xl mx-auto">Explore the available landing page designs with forms.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Coaching Home 2 Aqua</h3>
-                        <p class="text-charcoal/70 mb-4">A variation of my coaching homepage with an aqua theme.</p>
-                        <a href="coaching-home-2aqua.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                        <h3 class="text-xl font-semibold mb-2">Form LP1</h3>
+                        <p class="text-charcoal/70 mb-4">Landing page with a form for inquiries or signups.</p>
+                        <a href="fom_Lp1.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
                             <span>Visit Page</span>
                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -253,9 +136,35 @@
 
                 <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Coaching Home Alt</h3>
-                        <p class="text-charcoal/70 mb-4">An alternative coaching homepage design for your creative journey.</p>
-                        <a href="CoachingHomeAlt.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                        <h3 class="text-xl font-semibold mb-2">Form LP2</h3>
+                        <p class="text-charcoal/70 mb-4">Another variation of a form landing page for your needs.</p>
+                        <a href="fom_Lp2.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP3</h3>
+                        <p class="text-charcoal/70 mb-4">A third form landing page design for alternative layouts.</p>
+                        <a href="fom_Lp3.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
+                            <span>Visit Page</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="link-card bg-cream rounded-xl overflow-hidden shadow-md">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Form LP5</h3>
+                        <p class="text-charcoal/70 mb-4">A fifth form landing page option for user engagement.</p>
+                        <a href="fom_Lp5.html" class="text-teal hover:text-teal/80 font-medium flex items-center">
                             <span>Visit Page</span>
                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
