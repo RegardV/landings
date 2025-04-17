@@ -84,7 +84,8 @@
             transition: all 0.3s ease;
             border-radius: 12px;
             width: 100%;
-            max-width: 460px; /* Slightly wider for screen preview */
+            max-width: 630px; /* Approx 168mm (80% of A5 landscape width) at 96dpi */
+            aspect-ratio: 210 / 148; /* A5 landscape ratio */
         }
 
         .notecard:hover {
@@ -123,11 +124,11 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Print styles for A4 landscape with two cards */
+        /* Print styles for A5 landscape, one card per sheet */
         @media print {
             @page {
-                size: A4 landscape;
-                margin: 5mm;
+                size: A5 landscape;
+                margin: 0;
             }
             .no-print {
                 display: none !important;
@@ -141,19 +142,16 @@
                 padding: 0;
             }
             .card-grid {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 5mm;
-                justify-content: center;
+                display: block !important;
             }
             .notecard {
                 page-break-inside: avoid;
                 box-shadow: none !important;
                 border: 1px solid #ddd;
-                width: 135mm; /* Half A4 width minus margins and gap */
-                height: 190mm; /* Fits within A4 height minus margins */
+                width: 168mm; /* 80% of A5 landscape width (210mm) */
+                height: 118.4mm; /* 80% of A5 landscape height (148mm) */
                 max-width: none;
-                margin: 0;
+                margin: 14.8mm 21mm; /* Center within A5: (148mm - 118.4mm) / 2 = 14.8mm top/bottom, (210mm - 168mm) / 2 = 21mm left/right */
                 padding: 8mm;
                 font-size: 12pt;
                 display: flex;
@@ -249,16 +247,16 @@
             <!-- Printer Setup Instructions -->
             <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-8 no-print">
                 <h2 class="text-2xl font-serif mb-4 text-charcoal">How to Print Your Prompt Cards</h2>
-                <p class="text-charcoal/80 mb-4">Follow these steps to print two prompt cards side-by-side on A4 paper in landscape orientation:</p>
+                <p class="text-charcoal/80 mb-4">Follow these steps to print each prompt card on an A5 sheet in landscape orientation, filling 80% of the page:</p>
                 <ol class="list-decimal list-inside space-y-2 text-charcoal/80">
-                    <li><strong>Select A4 Paper:</strong> Use standard A4 paper (210mm x 297mm or 8.27in x 11.69in).</li>
+                    <li><strong>Select A5 Paper:</strong> Use A5-sized paper (148mm x 210mm or 5.83in x 8.27in). If unavailable, cut A4 paper in half.</li>
                     <li><strong>Open Print Dialog:</strong> After generating cards, click the "Print Cards" button (or press Ctrl+P / Cmd+P).</li>
-                    <li><strong>Set Paper Size and Orientation:</strong> In "Preferences" or "Properties," select "A4" paper size and "Landscape" orientation.</li>
-                    <li><strong>Adjust Layout:</strong> Set margins to "None" or "Minimum" (5mm applied automatically). Disable headers/footers.</li>
+                    <li><strong>Set Paper Size and Orientation:</strong> In "Preferences" or "Properties," select "A5" paper size and "Landscape" orientation. If A5 is not listed, choose "Custom" and enter 148mm x 210mm.</li>
+                    <li><strong>Adjust Layout:</strong> Set margins to "None" (margins are managed by CSS). Disable headers/footers.</li>
                     <li><strong>Print Settings:</strong> Ensure "Print on Both Sides" is off and scaling is "100%" or "Actual Size." Choose high quality if available.</li>
-                    <li><strong>Preview and Print:</strong> Verify the preview shows two cards per A4 sheet, side-by-side, each with 8 blank writing lines. Adjust if needed, then print.</li>
+                    <li><strong>Preview and Print:</strong> Verify the preview shows one card per A5 sheet, centered, filling 80% of the page with 8 blank writing lines. Adjust if needed, then print.</li>
                 </ol>
-                <p class="text-charcoal/80 mt-4 text-sm">Note: Printer settings vary by model. Consult your printer’s manual if issues arise. Test with one sheet first.</p>
+                <p class="text-charcoal/80 mt-4 text-sm">Note: Printer settings vary by model. Consult your printer’s manual if issues arise with A5 printing. Test with one sheet first.</p>
             </div>
             
             <!-- Print Instructions -->
@@ -270,7 +268,7 @@
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-charcoal">Ready to print!</h3>
                         <div class="mt-2 text-sm text-charcoal/80">
-                            <p>Your personal development prompt cards are ready. Click below to print two cards per A4 sheet or generate new ones.</p>
+                            <p>Your personal development prompt cards are ready. Click below to print each card on an A5 sheet in landscape orientation, or generate new ones.</p>
                         </div>
                         <div class="mt-4">
                             <button id="printBtn" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal hover:bg-teal/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal">
@@ -292,7 +290,7 @@
             </div>
             
             <!-- Results Container -->
-            <div id="resultsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8 card-grid"></div>
+            <div id="resultsContainer" class="grid grid-cols-1 gap-10 mb-8 card-grid"></div>
         </main>
         
         <!-- Footer -->
