@@ -84,7 +84,7 @@
             transition: all 0.3s ease;
             border-radius: 12px;
             width: 100%;
-            max-width: 420px; /* Approx A5 width in pixels at 96dpi */
+            max-width: 460px; /* Slightly wider for screen preview */
         }
 
         .notecard:hover {
@@ -123,10 +123,10 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Print styles for A5 */
+        /* Print styles for A4 landscape with two cards */
         @media print {
             @page {
-                size: A5 portrait;
+                size: A4 landscape;
                 margin: 5mm;
             }
             .no-print {
@@ -140,16 +140,22 @@
                 margin: 0;
                 padding: 0;
             }
+            .card-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5mm;
+                justify-content: center;
+            }
             .notecard {
                 page-break-inside: avoid;
                 box-shadow: none !important;
                 border: 1px solid #ddd;
-                width: 148mm; /* A5 width */
-                height: 200mm; /* A5 height minus margins */
+                width: 135mm; /* Half A4 width minus margins and gap */
+                height: 190mm; /* Fits within A4 height minus margins */
                 max-width: none;
-                margin: 0 auto 5mm;
-                padding: 10mm;
-                font-size: 12pt; /* Adjusted for print clarity */
+                margin: 0;
+                padding: 8mm;
+                font-size: 12pt;
                 display: flex;
                 flex-direction: column;
             }
@@ -164,15 +170,20 @@
                 flex-direction: column;
                 justify-content: space-between;
             }
-            .card-grid {
-                display: block !important;
-            }
             .badge {
                 transform: none;
             }
         }
         .print-only {
             display: none;
+        }
+        .screen-only {
+            display: block;
+        }
+        @media print {
+            .screen-only {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -238,16 +249,16 @@
             <!-- Printer Setup Instructions -->
             <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-8 no-print">
                 <h2 class="text-2xl font-serif mb-4 text-charcoal">How to Print Your Prompt Cards</h2>
-                <p class="text-charcoal/80 mb-4">Follow these steps to ensure your prompt cards print correctly on A5 paper:</p>
+                <p class="text-charcoal/80 mb-4">Follow these steps to print two prompt cards side-by-side on A4 paper in landscape orientation:</p>
                 <ol class="list-decimal list-inside space-y-2 text-charcoal/80">
-                    <li><strong>Select A5 Paper:</strong> Use A5-sized paper (148mm x 210mm or 5.83in x 8.27in). If unavailable, cut A4 paper in half.</li>
-                    <li><strong>Open Print Dialog:</strong> After generating cards, click the "Print Cards" button to open the print dialog (or press Ctrl+P / Cmd+P).</li>
-                    <li><strong>Set Paper Size:</strong> In the print dialog, go to "Preferences" or "Properties" and select "A5" under paper size. If A5 is not listed, choose "Custom" and enter 148mm x 210mm.</li>
-                    <li><strong>Adjust Layout:</strong> Set orientation to "Portrait" and margins to "None" or "Minimum" (5mm is applied automatically).</li>
-                    <li><strong>Print Settings:</strong> Ensure "Print on Both Sides" is off and scaling is set to "100%" or "Actual Size" to avoid resizing.</li>
-                    <li><strong>Preview and Print:</strong> Check the print preview to confirm one card per A5 page, filling the space with writing lines. Adjust if needed, then print.</li>
+                    <li><strong>Select A4 Paper:</strong> Use standard A4 paper (210mm x 297mm or 8.27in x 11.69in).</li>
+                    <li><strong>Open Print Dialog:</strong> After generating cards, click the "Print Cards" button (or press Ctrl+P / Cmd+P).</li>
+                    <li><strong>Set Paper Size and Orientation:</strong> In "Preferences" or "Properties," select "A4" paper size and "Landscape" orientation.</li>
+                    <li><strong>Adjust Layout:</strong> Set margins to "None" or "Minimum" (5mm applied automatically). Disable headers/footers.</li>
+                    <li><strong>Print Settings:</strong> Ensure "Print on Both Sides" is off and scaling is "100%" or "Actual Size." Choose high quality if available.</li>
+                    <li><strong>Preview and Print:</strong> Verify the preview shows two cards per A4 sheet, side-by-side, each with 8 blank writing lines. Adjust if needed, then print.</li>
                 </ol>
-                <p class="text-charcoal/80 mt-4 text-sm">Note: Printer settings vary by model. Consult your printer’s manual if you encounter issues with A5 printing.</p>
+                <p class="text-charcoal/80 mt-4 text-sm">Note: Printer settings vary by model. Consult your printer’s manual if issues arise. Test with one sheet first.</p>
             </div>
             
             <!-- Print Instructions -->
@@ -259,7 +270,7 @@
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-charcoal">Ready to print!</h3>
                         <div class="mt-2 text-sm text-charcoal/80">
-                            <p>Your personal development prompt cards are ready. Click the button below to print them or generate new ones.</p>
+                            <p>Your personal development prompt cards are ready. Click below to print two cards per A4 sheet or generate new ones.</p>
                         </div>
                         <div class="mt-4">
                             <button id="printBtn" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal hover:bg-teal/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal">
@@ -615,24 +626,16 @@
                                 <div class="${colorClass} p-3 rounded-lg">
                                     <p class="text-sm font-medium text-charcoal/80">${prompt}</p>
                                 </div>
-                                <!-- Handwritten Response Lines (Screen: 3 lines) -->
+                                <!-- Handwritten Response Lines (Screen: 3 blank lines) -->
                                 <div class="response-lines screen-only">
-                                    <div class="border-b border-dashed border-charcoal/20 py-2">
-                                        <p class="text-charcoal/40 italic handwritten text-lg">Write your response here...</p>
-                                    </div>
-                                    <div class="border-b border-dashed border-charcoal/20 py-2">
-                                        <p class="text-charcoal/20 italic handwritten text-lg">Continue your thoughts...</p>
-                                    </div>
-                                    <div class="border-b border-dashed border-charcoal/20 py-2">
-                                        <p class="text-charcoal/10 italic handwritten text-lg">Reflect deeper...</p>
-                                    </div>
+                                    ${Array.from({ length: 3 }, () => `
+                                        <div class="border-b border-dashed border-charcoal/20 py-2"></div>
+                                    `).join('')}
                                 </div>
-                                <!-- Handwritten Response Lines (Print: 10 lines) -->
+                                <!-- Handwritten Response Lines (Print: 8 blank lines) -->
                                 <div class="response-lines print-only">
-                                    ${Array.from({ length: 10 }, (_, i) => `
-                                        <div class="border-b border-dashed border-charcoal/20 py-2">
-                                            <p class="text-charcoal/${40 - i * 3} italic handwritten text-lg">Line ${i + 1}: Write here...</p>
-                                        </div>
+                                    ${Array.from({ length: 8 }, () => `
+                                        <div class="border-b border-dashed border-charcoal/20 py-2"></div>
                                     `).join('')}
                                 </div>
                             </div>
@@ -680,4 +683,3 @@
     </script>
 </body>
 </html>
-
