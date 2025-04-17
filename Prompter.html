@@ -125,6 +125,34 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* Tab styles */
+        .tab {
+            border-bottom: 2px solid #26a69a;
+            background-color: #e0f2f1;
+            padding: 10px 20px;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            background-color: #26a69a;
+            color: white;
+        }
+
+        .tab:hover {
+            background-color: #b2dfdb;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         /* Print styles for A5 landscape, one card per sheet */
         @media print {
             @page {
@@ -196,53 +224,105 @@
             </div>
         </header>
 
+        <!-- Tabs -->
+        <div class="container mx-auto px-4 no-print">
+            <div class="flex border-b border-teal">
+                <button class="tab active" data-tab="tab1">Create Prompt Cards</button>
+                <button class="tab" data-tab="tab2">Dynamic Prompts</button>
+            </div>
+        </div>
+
         <!-- Main Content -->
         <main class="flex-grow container mx-auto px-4 py-8">
-            <!-- Generator Form -->
-            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-8 no-print">
-                <h2 class="text-2xl font-serif mb-4 text-charcoal">Create Your Prompt Cards</h2>
-                
-                <div class="mb-4">
-                    <label for="niche" class="block text-sm font-medium text-charcoal/80 mb-1">Select Personal Development Niche</label>
-                    <select id="niche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
-                        <option value="">Select a niche...</option>
-                        <option value="mindfulness">Mindfulness & Meditation</option>
-                        <option value="productivity">Productivity & Time Management</option>
-                        <option value="confidence">Confidence & Self-Esteem</option>
-                        <option value="habits">Habit Formation</option>
-                        <option value="relationships">Relationships & Communication</option>
-                        <option value="career">Career Development</option>
-                        <option value="emotional">Emotional Intelligence</option>
-                        <option value="wellness">Health & Wellness</option>
-                        <option value="custom">Custom Niche...</option>
-                    </select>
+            <!-- Tab 1: Create Prompt Cards (Existing Functionality) -->
+            <div id="tab1" class="tab-content active">
+                <!-- Generator Form -->
+                <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-8 no-print">
+                    <h2 class="text-2xl font-serif mb-4 text-charcoal">Create Your Prompt Cards</h2>
+                    
+                    <div class="mb-4">
+                        <label for="niche" class="block text-sm font-medium text-charcoal/80 mb-1">Select Personal Development Niche</label>
+                        <select id="niche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                            <option value="">Select a niche...</option>
+                            <option value="mindfulness">Mindfulness & Meditation</option>
+                            <option value="productivity">Productivity & Time Management</option>
+                            <option value="confidence">Confidence & Self-Esteem</option>
+                            <option value="habits">Habit Formation</option>
+                            <option value="relationships">Relationships & Communication</option>
+                            <option value="career">Career Development</option>
+                            <option value="emotional">Emotional Intelligence</option>
+                            <option value="wellness">Health & Wellness</option>
+                            <option value="custom">Custom Niche...</option>
+                        </select>
+                    </div>
+                    
+                    <div id="customNicheField" class="mb-4 hidden">
+                        <label for="customNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Niche</label>
+                        <input type="text" id="customNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your personal development niche">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="subNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Select Sub-Niche</label>
+                        <select id="subNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                            <option value="">First select a niche...</option>
+                        </select>
+                    </div>
+                    
+                    <div id="customSubNicheField" class="mb-4 hidden">
+                        <label for="customSubNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Sub-Niche</label>
+                        <input type="text" id="customSubNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your sub-niche">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="cardCount" class="block text-sm font-medium text-charcoal/80 mb-1">Number of Cards (1-6)</label>
+                        <input type="number" id="cardCount" min="1" max="6" value="3" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                    </div>
+                    
+                    <button id="generateBtn" class="w-full btn-primary py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal transition-colors font-medium">
+                        Generate Prompt Cards
+                    </button>
                 </div>
-                
-                <div id="customNicheField" class="mb-4 hidden">
-                    <label for="customNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Niche</label>
-                    <input type="text" id="customNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your personal development niche">
+            </div>
+
+            <!-- Tab 2: Dynamic Prompts (LLM-Driven) -->
+            <div id="tab2" class="tab-content">
+                <!-- Dynamic Generator Form -->
+                <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-8 no-print">
+                    <h2 class="text-2xl font-serif mb-4 text-charcoal">Generate Dynamic Prompt Cards</h2>
+                    
+                    <div class="mb-4">
+                        <label for="dynamicNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Select or Enter Personal Development Niche</label>
+                        <select id="dynamicNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                            <option value="">Loading niche suggestion...</option>
+                        </select>
+                    </div>
+                    
+                    <div id="dynamicCustomNicheField" class="mb-4 hidden">
+                        <label for="dynamicCustomNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Niche</label>
+                        <input type="text" id="dynamicCustomNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your personal development niche">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="dynamicSubNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Select Sub-Niche</label>
+                        <select id="dynamicSubNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                            <option value="">First select a niche...</option>
+                        </select>
+                    </div>
+                    
+                    <div id="dynamicCustomSubNicheField" class="mb-4 hidden">
+                        <label for="dynamicCustomSubNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Sub-Niche</label>
+                        <input type="text" id="dynamicCustomSubNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your sub-niche">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="dynamicCardCount" class="block text-sm font-medium text-charcoal/80 mb-1">Number of Cards (1-6)</label>
+                        <input type="number" id="dynamicCardCount" min="1" max="6" value="3" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
+                    </div>
+                    
+                    <button id="dynamicGenerateBtn" class="w-full btn-primary py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal transition-colors font-medium">
+                        Generate Prompt Cards
+                    </button>
                 </div>
-                
-                <div class="mb-4">
-                    <label for="subNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Select Sub-Niche</label>
-                    <select id="subNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
-                        <option value="">First select a niche...</option>
-                    </select>
-                </div>
-                
-                <div id="customSubNicheField" class="mb-4 hidden">
-                    <label for="customSubNiche" class="block text-sm font-medium text-charcoal/80 mb-1">Enter Custom Sub-Niche</label>
-                    <input type="text" id="customSubNiche" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal" placeholder="Enter your sub-niche">
-                </div>
-                
-                <div class="mb-4">
-                    <label for="cardCount" class="block text-sm font-medium text-charcoal/80 mb-1">Number of Cards (1-6)</label>
-                    <input type="number" id="cardCount" min="1" max="6" value="3" class="w-full px-4 py-2 border border-charcoal/20 rounded-md focus:ring-2 focus:ring-teal focus:border-teal">
-                </div>
-                
-                <button id="generateBtn" class="w-full btn-primary py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal transition-colors font-medium">
-                    Generate Prompt Cards
-                </button>
             </div>
 
             <!-- Printer Setup Instructions -->
@@ -308,7 +388,7 @@
         const API_KEY = 'xai-a2Oi7ieAgL195XyzbSYPYM0hPztn58z7isltarLBGC5bh0TMsRy0ZqFRewKTEKm4Bh4CMckQV5Rl7lq3';
         const API_BASE_URL = 'https://api.x.ai';
 
-        // Niche and Sub-niche data for personal development
+        // Niche and Sub-niche data for Tab 1 (static)
         const nicheData = {
             mindfulness: ["Meditation Practice", "Present Moment Awareness", "Mindful Eating", "Body Scan", "Breathing Techniques", "Mindful Movement", "Stress Reduction", "Custom..."],
             productivity: ["Goal Setting", "Time Blocking", "Focus Techniques", "Prioritization", "Overcoming Procrastination", "Energy Management", "Deep Work", "Custom..."],
@@ -320,7 +400,7 @@
             wellness: ["Sleep Optimization", "Nutrition", "Exercise Habits", "Mental Health", "Energy Management", "Digital Wellbeing", "Holistic Health", "Custom..."]
         };
 
-        // DOM Elements
+        // DOM Elements for Tab 1
         const nicheSelect = document.getElementById('niche');
         const customNicheField = document.getElementById('customNicheField');
         const customNicheInput = document.getElementById('customNiche');
@@ -329,6 +409,18 @@
         const customSubNicheInput = document.getElementById('customSubNiche');
         const cardCountInput = document.getElementById('cardCount');
         const generateBtn = document.getElementById('generateBtn');
+
+        // DOM Elements for Tab 2
+        const dynamicNicheSelect = document.getElementById('dynamicNiche');
+        const dynamicCustomNicheField = document.getElementById('dynamicCustomNicheField');
+        const dynamicCustomNicheInput = document.getElementById('dynamicCustomNiche');
+        const dynamicSubNicheSelect = document.getElementById('dynamicSubNiche');
+        const dynamicCustomSubNicheField = document.getElementById('dynamicCustomSubNicheField');
+        const dynamicCustomSubNicheInput = document.getElementById('dynamicCustomSubNiche');
+        const dynamicCardCountInput = document.getElementById('dynamicCardCount');
+        const dynamicGenerateBtn = document.getElementById('dynamicGenerateBtn');
+
+        // Shared DOM Elements
         const resultsContainer = document.getElementById('resultsContainer');
         const printInstructions = document.getElementById('printInstructions');
         const printBtn = document.getElementById('printBtn');
@@ -336,14 +428,37 @@
         const printTitle = document.getElementById('printTitle');
         const printSubtitle = document.getElementById('printSubtitle');
 
-        // Event Listeners
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+
+                // Reset results and print instructions when switching tabs
+                resultsContainer.innerHTML = '';
+                printInstructions.classList.add('hidden');
+            });
+        });
+
+        // Event Listeners for Tab 1
         nicheSelect.addEventListener('change', updateSubNicheOptions);
         subNicheSelect.addEventListener('change', handleSubNicheChange);
         generateBtn.addEventListener('click', generatePromptCards);
         printBtn.addEventListener('click', () => window.print());
         newCardsBtn.addEventListener('click', resetForm);
 
-        // Functions
+        // Event Listeners for Tab 2
+        dynamicNicheSelect.addEventListener('change', handleDynamicNicheChange);
+        dynamicSubNicheSelect.addEventListener('change', handleDynamicSubNicheChange);
+        dynamicGenerateBtn.addEventListener('click', generateDynamicPromptCards);
+
+        // Functions for Tab 1 (Existing Functionality)
         function updateSubNicheOptions() {
             const selectedNiche = nicheSelect.value;
             
@@ -392,18 +507,114 @@
             return selectedSubNiche === 'custom' ? customSubNicheInput.value.trim() || 'Custom Topic' : selectedSubNiche;
         }
 
-        function getNicheDisplayName(niche) {
-            const nicheMap = {
-                'mindfulness': 'Mindfulness & Meditation',
-                'productivity': 'Productivity & Time Management',
-                'confidence': 'Confidence & Self-Esteem',
-                'habits': 'Habit Formation',
-                'relationships': 'Relationships & Communication',
-                'career': 'Career Development',
-                'emotional': 'Emotional Intelligence',
-                'wellness': 'Health & Wellness'
-            };
-            return nicheMap[niche] || niche;
+        // Functions for Tab 2 (Dynamic LLM-Driven)
+        async function fetchNicheSuggestion() {
+            try {
+                const systemPrompt = `You are a personal development expert. Suggest a single personal development niche suitable for creating journal prompts. Provide only the niche name (e.g., "Mindfulness & Meditation").`;
+                
+                const response = await fetch(`${API_BASE_URL}/v1/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'grok',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: 'Suggest a niche now.' }
+                        ],
+                        max_tokens: 50,
+                        temperature: 0.7,
+                        n: 1
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch niche suggestion');
+                const data = await response.json();
+                const niche = data.choices[0]?.message?.content?.trim() || 'Mindfulness & Meditation';
+                return niche;
+            } catch (error) {
+                console.error('Error fetching niche suggestion:', error);
+                return 'Mindfulness & Meditation'; // Fallback niche
+            }
+        }
+
+        async function fetchSubNiches(niche) {
+            try {
+                const systemPrompt = `You are a personal development expert. Given the personal development niche "${niche}", suggest 5 sub-niches that would be suitable for creating journal prompts. Provide only the sub-niche names in a list format (e.g., "Meditation Practice\nPresent Moment Awareness\nMindful Eating").`;
+                
+                const response = await fetch(`${API_BASE_URL}/v1/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'grok',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: 'Suggest sub-niches now.' }
+                        ],
+                        max_tokens: 100,
+                        temperature: 0.7,
+                        n: 1
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch sub-niches');
+                const data = await response.json();
+                const subNichesText = data.choices[0]?.message?.content || '';
+                const subNiches = subNichesText.split('\n').filter(line => line.trim() !== '');
+                if (subNiches.length === 0) throw new Error('No sub-niches generated');
+                return subNiches;
+            } catch (error) {
+                console.error('Error fetching sub-niches:', error);
+                return ['Meditation Practice', 'Present Moment Awareness', 'Mindful Eating', 'Breathing Techniques', 'Stress Reduction']; // Fallback sub-niches
+            }
+        }
+
+        async function initializeDynamicTab() {
+            const niche = await fetchNicheSuggestion();
+            dynamicNicheSelect.innerHTML = `
+                <option value="${niche}">${niche}</option>
+                <option value="custom">Custom Niche...</option>
+            `;
+        }
+
+        function handleDynamicNicheChange() {
+            const selectedNiche = dynamicNicheSelect.value;
+            dynamicCustomNicheField.classList.toggle('hidden', selectedNiche !== 'custom');
+            dynamicSubNicheSelect.innerHTML = '<option value="">Loading sub-niches...</option>';
+            
+            if (selectedNiche && selectedNiche !== 'custom') {
+                fetchSubNiches(selectedNiche).then(subNiches => {
+                    dynamicSubNicheSelect.innerHTML = `
+                        <option value="">Select a sub-niche...</option>
+                        ${subNiches.map(subNiche => `<option value="${subNiche}">${subNiche}</option>`).join('')}
+                        <option value="custom">Custom Sub-Niche...</option>
+                    `;
+                });
+            } else {
+                dynamicSubNicheSelect.innerHTML = `
+                    <option value="">First select or enter a niche...</option>
+                    ${selectedNiche === 'custom' ? '<option value="custom">Custom Sub-Niche...</option>' : ''}
+                `;
+            }
+        }
+
+        function handleDynamicSubNicheChange() {
+            dynamicCustomSubNicheField.classList.toggle('hidden', dynamicSubNicheSelect.value !== 'custom');
+        }
+
+        function getDynamicSelectedNiche() {
+            const selectedNiche = dynamicNicheSelect.value;
+            return selectedNiche === 'custom' ? dynamicCustomNicheInput.value.trim() || 'Personal Development' : selectedNiche;
+        }
+
+        function getDynamicSelectedSubNiche() {
+            const selectedSubNiche = dynamicSubNicheSelect.value;
+            return selectedSubNiche === 'custom' ? dynamicCustomSubNicheInput.value.trim() || 'Custom Topic' : selectedSubNiche;
         }
 
         // Fetch available models (for verification or selection)
@@ -439,7 +650,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        model: 'grok', // Replace with desired model if different
+                        model: 'grok',
                         messages: [
                             { role: 'system', content: systemPrompt },
                             { role: 'user', content: 'Generate the prompts now.' }
@@ -493,9 +704,24 @@
                 'wellness': 'Vibrant',
                 'custom': 'Inspired'
             };
-            return moodMap[niche] || 'Inspired';
+            return moodMap[niche.toLowerCase()] || 'Inspired';
         }
 
+        function getNicheDisplayName(niche) {
+            const nicheMap = {
+                'mindfulness': 'Mindfulness & Meditation',
+                'productivity': 'Productivity & Time Management',
+                'confidence': 'Confidence & Self-Esteem',
+                'habits': 'Habit Formation',
+                'relationships': 'Relationships & Communication',
+                'career': 'Career Development',
+                'emotional': 'Emotional Intelligence',
+                'wellness': 'Health & Wellness'
+            };
+            return nicheMap[niche.toLowerCase()] || niche;
+        }
+
+        // Tab 1: Generate Prompt Cards (Static Options)
         async function generatePromptCards() {
             const niche = getSelectedNiche();
             const subNiche = getSelectedSubNiche();
@@ -515,6 +741,34 @@
             // Fetch prompts from xAI API
             const prompts = await fetchPrompts(niche, subNiche, cardCount);
             
+            renderPromptCards(niche, subNiche, prompts, cardCount);
+        }
+
+        // Tab 2: Generate Dynamic Prompt Cards
+        async function generateDynamicPromptCards() {
+            const niche = getDynamicSelectedNiche();
+            const subNiche = getDynamicSelectedSubNiche();
+            
+            if (!niche) {
+                alert('Please select or enter a personal development niche.');
+                return;
+            }
+            
+            if (!subNiche) {
+                alert('Please select or enter a sub-niche.');
+                return;
+            }
+            
+            const cardCount = Math.min(Math.max(parseInt(dynamicCardCountInput.value) || 3, 1), 6);
+            
+            // Fetch prompts from xAI API
+            const prompts = await fetchPrompts(niche, subNiche, cardCount);
+            
+            renderPromptCards(niche, subNiche, prompts, cardCount);
+        }
+
+        // Shared function to render prompt cards
+        function renderPromptCards(niche, subNiche, prompts, cardCount) {
             resultsContainer.innerHTML = '';
             
             prompts.forEach((prompt, index) => {
@@ -522,36 +776,44 @@
                 card.className = `notecard relative max-w-md mx-auto`;
                 
                 let colorClass, badgeColor;
-                switch(niche) {
+                switch(niche.toLowerCase()) {
                     case 'mindfulness':
+                    case 'mindfulness & meditation':
                         colorClass = 'text-mindfulness bg-mindfulness-light';
                         badgeColor = 'bg-mindfulness';
                         break;
                     case 'productivity':
+                    case 'productivity & time management':
                         colorClass = 'text-productivity bg-productivity-light';
                         badgeColor = 'bg-productivity';
                         break;
                     case 'confidence':
+                    case 'confidence & self-esteem':
                         colorClass = 'text-confidence bg-confidence-light';
                         badgeColor = 'bg-confidence';
                         break;
                     case 'habits':
+                    case 'habit formation':
                         colorClass = 'text-habits bg-habits-light';
                         badgeColor = 'bg-habits';
                         break;
                     case 'relationships':
+                    case 'relationships & communication':
                         colorClass = 'text-relationships bg-relationships-light';
                         badgeColor = 'bg-relationships';
                         break;
                     case 'career':
+                    case 'career development':
                         colorClass = 'text-career bg-career-light';
                         badgeColor = 'bg-career';
                         break;
                     case 'emotional':
+                    case 'emotional intelligence':
                         colorClass = 'text-emotional bg-emotional-light';
                         badgeColor = 'bg-emotional';
                         break;
                     case 'wellness':
+                    case 'health & wellness':
                         colorClass = 'text-wellness bg-wellness-light';
                         badgeColor = 'bg-wellness';
                         break;
@@ -604,37 +866,6 @@
                                     <a href="#" class="flex items-center no-print">
                                         <span>Prompt #${index + 1}</span>
                                         <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <span class="print-only">Prompt #${index + 1}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Badge -->
-                    <div class="badge ${badgeColor}">${index === 0 ? 'Start Here' : (index === cardCount - 1 ? 'Final Prompt' : `#${index + 1}`)}</div>
-                `;
-                
-                resultsContainer.appendChild(card);
-            });
-            
-            printInstructions.classList.remove('hidden');
-            printTitle.textContent = `${getNicheDisplayName(niche)} Prompt Cards`;
-            printSubtitle.textContent = `${subNiche} - ${cardCount} Personal Development Prompts`;
-            resultsContainer.scrollIntoView({ behavior: 'smooth' });
-        }
+                                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1...
 
-        function resetForm() {
-            printInstructions.classList.add('hidden');
-            resultsContainer.innerHTML = '';
-            cardCountInput.value = 3;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Initialize the form and fetch models
-        updateSubNicheOptions();
-        fetchModels();
-    </script>
-</body>
-</html>
+Something went wrong, please refresh to reconnect or try again.
