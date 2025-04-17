@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Development Prompt Cards</title>
+    <meta name="xai-key" content="xai-a2Oi7ieAgL195XyzbSYPYM0hPztn58z7isltarLBGC5bh0TMsRy0ZqFRewKTEKm4Bh4CMckQV5Rl7lq3">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -287,6 +288,7 @@
             <div class="print-only text-center mb-8">
                 <h1 class="text-3xl font-serif" id="printTitle">Personal Development Prompt Cards</h1>
                 <p class="text-charcoal/60" id="printSubtitle"></p>
+                <p class="text-charcoal/60 text-xs">Key: xai-a2Oi7ieAgL195XyzbSYPYM0hPztn58z7isltarLBGC5bh0TMsRy0ZqFRewKTEKm4Bh4CMckQV5Rl7lq3</p>
             </div>
             
             <!-- Results Container -->
@@ -302,6 +304,10 @@
     </div>
 
     <script>
+        // API Configuration
+        const API_KEY = 'xai-a2Oi7ieAgL195XyzbSYPYM0hPztn58z7isltarLBGC5bh0TMsRy0ZqFRewKTEKm4Bh4CMckQV5Rl7lq3';
+        const API_BASE_URL = 'https://api.x.ai';
+
         // Niche and Sub-niche data for personal development
         const nicheData = {
             mindfulness: ["Meditation Practice", "Present Moment Awareness", "Mindful Eating", "Body Scan", "Breathing Techniques", "Mindful Movement", "Stress Reduction", "Custom..."],
@@ -313,112 +319,6 @@
             emotional: ["Emotional Awareness", "Regulating Emotions", "Empathy", "Self-Compassion", "Resilience", "Managing Stress", "Processing Grief", "Custom..."],
             wellness: ["Sleep Optimization", "Nutrition", "Exercise Habits", "Mental Health", "Energy Management", "Digital Wellbeing", "Holistic Health", "Custom..."]
         };
-
-        // Prompt templates based on niche and sub-niche
-        const promptTemplates = {
-            mindfulness: {
-                "Meditation Practice": [
-                    "What sensations do you notice in your body when you sit in meditation for 5 minutes?",
-                    "Describe a moment today when you felt fully present. What made this moment different?",
-                    "What thoughts consistently arise during your meditation practice? How do you respond to them?",
-                    "How would you describe the quality of your breath right now? How does it change as you observe it?",
-                    "What environment helps you meditate most effectively? Describe it in detail.",
-                    "What is one insight you've gained from your meditation practice this week?"
-                ],
-                "Present Moment Awareness": [
-                    "Describe three things you can see, two things you can hear, and one thing you can feel right now.",
-                    "When did you catch yourself on autopilot today? How did you bring yourself back to the present?",
-                    "What everyday activity could you transform into a mindfulness practice? How?",
-                    "Describe a moment today when you were fully engaged in what you were doing.",
-                    "What sensations, thoughts, and emotions are you experiencing in this exact moment?",
-                    "How does your relationship with time change when you're fully present?"
-                ],
-                "Breathing Techniques": [
-                    "How does your breath change when you're stressed versus when you're relaxed?",
-                    "Which breathing technique has been most helpful for you and why?",
-                    "Describe how your body feels after practicing deep breathing for 2 minutes.",
-                    "What emotions arise when you focus solely on your breath for 5 minutes?",
-                    "How could you incorporate mindful breathing into your daily routine?",
-                    "What physical sensations do you notice as you breathe deeply right now?"
-                ]
-            },
-            productivity: {
-                "Goal Setting": [
-                    "What is one goal that excites you? Break it down into three actionable steps.",
-                    "How do your current goals align with your core values and long-term vision?",
-                    "What's one goal you've been avoiding? What's the first tiny step you could take?",
-                    "Describe your ideal day one year from now if you achieve your current goals.",
-                    "What metrics will you use to track progress toward your most important goal?",
-                    "What's one goal you should let go of? Why is it no longer serving you?"
-                ],
-                "Overcoming Procrastination": [
-                    "What task have you been avoiding the most? What's the smallest first step you could take?",
-                    "When you procrastinate, what emotions are you trying to avoid?",
-                    "What would you say to a friend who was procrastinating on the same task you're avoiding?",
-                    "How could you make the task you're avoiding more enjoyable or meaningful?",
-                    "What's the cost of continuing to procrastinate on your most important task?",
-                    "What time of day are you most focused? How could you protect this time for important work?"
-                ],
-                "Deep Work": [
-                    "What creates your ideal environment for deep, focused work?",
-                    "What distractions most commonly pull you out of deep work? How could you eliminate them?",
-                    "How does your energy level change throughout the day? When are you most capable of deep work?",
-                    "What ritual could you create to signal to your brain it's time for deep focus?",
-                    "What's one project that would benefit most from dedicated deep work sessions?",
-                    "How do you feel after completing a session of deep, focused work?"
-                ]
-            },
-            confidence: {
-                "Self-Talk": [
-                    "What negative phrase do you often say to yourself? Rewrite it as a compassionate statement.",
-                    "When did your inner critic show up today? What would your inner ally say instead?",
-                    "What would you say to your younger self about the challenges you're facing now?",
-                    "Write down three strengths you demonstrated today, however small they might seem.",
-                    "What's one area where your self-talk is particularly harsh? How could you speak to yourself more kindly?",
-                    "What would your best friend say about your abilities in the area where you doubt yourself most?"
-                ],
-                "Impostor Syndrome": [
-                    "What accomplishment are you most proud of? Why do you deserve credit for it?",
-                    "When do you feel most like an impostor? What evidence contradicts this feeling?",
-                    "What would you do differently if you truly believed in your capabilities?",
-                    "Write down three pieces of positive feedback you've received. Why might they be true?",
-                    "What skills or knowledge have you worked hard to develop?",
-                    "How might your perspective change if you viewed mistakes as learning opportunities rather than evidence of inadequacy?"
-                ]
-            },
-            habits: {
-                "Morning Routines": [
-                    "What three activities would make your ideal morning routine? Why these specifically?",
-                    "How does the quality of your morning affect the rest of your day?",
-                    "What's one small habit you could add to your morning that would have a big impact?",
-                    "What part of your current morning routine drains your energy? How could you change it?",
-                    "Describe your ideal morning routine if you had an extra hour to yourself.",
-                    "What morning habit would help you connect with your values or purpose each day?"
-                ],
-                "Habit Tracking": [
-                    "What habit are you currently trying to build? How will you track your progress?",
-                    "How does tracking your habits affect your motivation and consistency?",
-                    "What's the smallest version of your habit that you could track daily?",
-                    "What habit streak are you most proud of maintaining? What made it successful?",
-                    "How do you respond when you break a habit streak? What would be more helpful?",
-                    "What metrics beyond completion would be meaningful to track for your key habits?"
-                ]
-            }
-        };
-
-        // Generic prompts for personal development
-        const genericPrompts = [
-            "What aspect of [sub-niche] challenges you the most? What small step could you take to address it?",
-            "How would developing mastery in [sub-niche] impact other areas of your life?",
-            "What belief about [sub-niche] might be limiting your growth? How could you reframe it?",
-            "What would your daily routine look like if [sub-niche] was truly a priority for you?",
-            "Who inspires you in the area of [sub-niche]? What specific quality or habit could you learn from them?",
-            "What's one small experiment you could try this week related to [sub-niche]?",
-            "How has your approach to [sub-niche] evolved over time? What caused these shifts?",
-            "What would success in [sub-niche] look and feel like for you specifically?",
-            "What's one resource that has helped you with [sub-niche]? How has it impacted your practice?",
-            "If you were to teach someone else about [sub-niche], what would be your most important lesson?"
-        ];
 
         // DOM Elements
         const nicheSelect = document.getElementById('niche');
@@ -506,20 +406,73 @@
             return nicheMap[niche] || niche;
         }
 
-        function getPrompts(niche, subNiche, count) {
-            const specificPrompts = promptTemplates[niche]?.[subNiche] || [];
-            let prompts = specificPrompts.length > 0 ? [...specificPrompts] : [...genericPrompts];
-            
-            while (prompts.length < count) {
-                prompts = prompts.concat(genericPrompts);
+        // Fetch available models (for verification or selection)
+        async function fetchModels() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/v1/models`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch models');
+                const data = await response.json();
+                console.log('Available models:', data);
+                return data;
+            } catch (error) {
+                console.error('Error fetching models:', error);
+                alert('Failed to fetch models. Using default model.');
+                return null;
             }
-            
-            prompts.sort(() => Math.random() - 0.5);
-            return prompts.slice(0, count).map(prompt => {
-                return prompt
-                    .replace(/\[niche\]/g, getNicheDisplayName(niche))
-                    .replace(/\[sub-niche\]/g, subNiche);
-            });
+        }
+
+        // Fetch prompts from xAI API
+        async function fetchPrompts(niche, subNiche, count) {
+            try {
+                const systemPrompt = `You are a personal development coach. Generate ${count} unique, reflective prompts for a personal development journal focused on the niche "${niche}" and sub-niche "${subNiche}". Each prompt should be a concise question or statement encouraging self-reflection, suitable for writing a detailed response.`;
+                
+                const response = await fetch(`${API_BASE_URL}/v1/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'grok', // Replace with desired model if different
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: 'Generate the prompts now.' }
+                        ],
+                        max_tokens: 500,
+                        temperature: 0.7,
+                        n: 1
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch prompts from API');
+                const data = await response.json();
+                const promptsText = data.choices[0]?.message?.content || '';
+                
+                // Parse the response into an array of prompts
+                const prompts = promptsText.split('\n').filter(line => line.trim() !== '');
+                if (prompts.length < count) throw new Error('Not enough prompts generated');
+                
+                return prompts.slice(0, count);
+            } catch (error) {
+                console.error('Error fetching prompts:', error);
+                alert('Failed to generate prompts via API. Using fallback prompts.');
+                // Fallback prompts
+                const fallbackPrompts = [
+                    `What aspect of ${subNiche} challenges you the most? What small step could you take to address it?`,
+                    `How would developing mastery in ${subNiche} impact other areas of your life?`,
+                    `What belief about ${subNiche} might be limiting your growth? How could you reframe it?`,
+                    `What would your daily routine look like if ${subNiche} was truly a priority for you?`,
+                    `Who inspires you in the area of ${subNiche}? What specific quality or habit could you learn from them?`,
+                    `What's one small experiment you could try this week related to ${subNiche}?`
+                ];
+                return fallbackPrompts.slice(0, count);
+            }
         }
 
         function getCurrentDate() {
@@ -543,7 +496,7 @@
             return moodMap[niche] || 'Inspired';
         }
 
-        function generatePromptCards() {
+        async function generatePromptCards() {
             const niche = getSelectedNiche();
             const subNiche = getSelectedSubNiche();
             
@@ -558,7 +511,9 @@
             }
             
             const cardCount = Math.min(Math.max(parseInt(cardCountInput.value) || 3, 1), 6);
-            const prompts = getPrompts(niche, subNiche, cardCount);
+            
+            // Fetch prompts from xAI API
+            const prompts = await fetchPrompts(niche, subNiche, cardCount);
             
             resultsContainer.innerHTML = '';
             
@@ -677,7 +632,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Initialize the form and fetch models
         updateSubNicheOptions();
+        fetchModels();
     </script>
 </body>
 </html>
