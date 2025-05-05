@@ -1,0 +1,1367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Flow Chat - Turn 3 Hours of AI Work into 3 Minutes</title>
+    <meta name="description" content="Create reusable AI workflows once, run them forever. Chain multiple AI prompts together to create complex workflows. Output text and images.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            padding-bottom: 120%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.3s;
+        }
+        .btn-primary:active::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            transition: 0s;
+        }
+        .btn-secondary {
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .faq-item {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        .faq-item:hover {
+            background-color: #f9fafb;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-open .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-open .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .blob {
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            animation: morph 8s linear infinite;
+        }
+        @keyframes morph {
+            0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            25% { border-radius: 45% 55% 65% 35% / 50% 50% 50% 50%; }
+            50% { border-radius: 50% 50% 55% 45% / 55% 45% 45% 55%; }
+            75% { border-radius: 55% 45% 45% 55% / 45% 55% 55% 45%; }
+            100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+        }
+        .workflow-step {
+            position: relative;
+        }
+        .workflow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            width: 30px;
+            height: 2px;
+            background-color: #cbd5e0;
+        }
+        .glow {
+            box-shadow: 0 0 15px rgba(66, 153, 225, 0.5);
+        }
+        .rotate-slow {
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .hero-shape {
+            position: absolute;
+            z-index: 0;
+        }
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(99, 102, 241, 0.1);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        .shape-2 {
+            bottom: 10%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(245, 158, 11, 0.1);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        .shape-3 {
+            top: 60%;
+            left: 15%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 px-6 md:px-12 lg:px-24 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="https://aiflowchat.com/" class="text-2xl font-bold text-gray-900 flex items-center">
+                <span class="bg-black text-white w-8 h-8 rounded-md flex items-center justify-center mr-2">A</span>
+                AI Flow Chat
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-gray-900 font-medium">Features</a>
+                <a href="#pricing" class="text-gray-600 hover:text-gray-900 font-medium">Pricing</a>
+                <a href="#faq" class="text-gray-600 hover:text-gray-900 font-medium">FAQ</a>
+            </div>
+            <a href="#start" class="hidden md:block bg-black text-white px-6 py-2 rounded-md font-medium hover:bg-gray-800 transition-colors">Start for Free</a>
+            <button class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Section 1: Above the Fold -->
+    <section class="hero-gradient py-16 md:py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <!-- Decorative shapes -->
+        <div class="hero-shape shape-1 floating"></div>
+        <div class="hero-shape shape-2 floating" style="animation-delay: -1s;"></div>
+        <div class="hero-shape shape-3 floating" style="animation-delay: -2s;"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                    <div class="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-4 shadow-sm">
+                        <span class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            Viral on X with 3.2M views
+                        </span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-transparent">
+                        Tired of Repetitive AI Tasks? Turn 3 Hours of AI Work into 3 Minutes
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                        Create reusable AI workflows once, run them forever. Chain multiple AI prompts together to create complex workflows. Output text and images.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <a href="#start" id="start" class="btn-primary bg-black text-white px-8 py-4 rounded-md font-bold text-lg w-full sm:w-auto text-center">
+                            Start for Free
+                        </a>
+                        <p class="text-gray-500 text-sm flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            No credit card • Get started in 10 seconds
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="relative">
+                        <!-- Creative image placeholder with workflow visualization -->
+                        <div class="bg-white rounded-xl shadow-2xl p-6 relative overflow-hidden">
+                            <!-- Decorative elements -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16"></div>
+                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-purple-50 rounded-full -ml-12 -mb-12"></div>
+                            
+                            <div class="relative">
+                                <!-- Header with controls -->
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-500">AI Flow Chat</div>
+                                </div>
+                                
+                                <!-- Workflow visualization -->
+                                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                                    <h3 class="text-lg font-semibold mb-4">Content Creation Workflow</h3>
+                                    <div class="flex flex-wrap justify-between">
+                                        <div class="workflow-step bg-blue-100 p-3 rounded-lg w-28 text-center mb-4">
+                                            <div class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2">1</div>
+                                            <p class="text-sm font-medium">Research</p>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mx-1 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                        <div class="workflow-step bg-purple-100 p-3 rounded-lg w-28 text-center mb-4">
+                                            <div class="bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2">2</div>
+                                            <p class="text-sm font-medium">Outline</p>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mx-1 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                        <div class="workflow-step bg-green-100 p-3 rounded-lg w-28 text-center mb-4">
+                                            <div class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                                            <p class="text-sm font-medium">Create</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chat interface -->
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                            <span class="text-sm font-bold">U</span>
+                                        </div>
+                                        <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none flex-grow">
+                                            <p class="text-sm">Tell me about classical music</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <div class="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                            <span class="text-sm font-bold text-white">AI</span>
+                                        </div>
+                                        <div class="bg-blue-50 p-3 rounded-lg rounded-tl-none flex-grow">
+                                            <p class="text-sm">Classical music is a broad term that typically refers to Western musical traditions from the late 18th to early 20th century...</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <div class="bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                            <span class="text-sm font-bold">U</span>
+                                        </div>
+                                        <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none flex-grow">
+                                            <p class="text-sm">What kind of blogs could I write about this topic?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action buttons -->
+                                <div class="mt-6 flex justify-between">
+                                    <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                                        </svg>
+                                        Save Flow
+                                    </button>
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Run Workflow
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating elements -->
+                        <div class="absolute -top-6 -right-6 w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center rotate-slow opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-green-100 rounded-full flex items-center justify-center pulse opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Problems Section -->
+    <section class="bg-gray-50 py-16 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-30"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">
+                    Are you spending hours on repetitive AI tasks that drain your productivity? Do you struggle to manage complex AI workflows without errors?
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Manual AI processes are time-consuming, error-prone, and keep you from focusing on what really matters—growing your business or creating impactful content.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-white p-6 rounded-lg shadow-md feature-card">
+                        <div class="text-red-500 mb-4 bg-red-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Time-Consuming</h3>
+                        <p class="text-gray-600">Repeating the same AI prompts over and over wastes valuable hours every week</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md feature-card">
+                        <div class="text-yellow-500 mb-4 bg-yellow-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Error-Prone</h3>
+                        <p class="text-gray-600">Manual processes lead to inconsistent results and costly mistakes</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md feature-card">
+                        <div class="text-blue-500 mb-4 bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Lack of Complexity</h3>
+                        <p class="text-gray-600">Most tools can't chain prompts for sophisticated multi-step workflows</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Authority Building + Flawed Solutions -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="bg-blue-50 p-6 rounded-lg relative overflow-hidden">
+                        <!-- Decorative elements -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full -mr-16 -mt-16 opacity-70"></div>
+                        
+                        <div class="relative">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-600 p-3 rounded-lg mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold">Trusted by Professionals</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 mb-6">
+                                Trusted by professionals who need efficient AI automation for their daily workflows.
+                            </p>
+                            <div class="mt-6 grid grid-cols-3 gap-4">
+                                <div class="bg-white shadow-md h-16 rounded-md flex items-center justify-center text-gray-500 font-medium">Company 1</div>
+                                <div class="bg-white shadow-md h-16 rounded-md flex items-center justify-center text-gray-500 font-medium">Company 2</div>
+                                <div class="bg-white shadow-md h-16 rounded-md flex items-center justify-center text-gray-500 font-medium">Company 3</div>
+                            </div>
+                            
+                            <!-- Trust badges -->
+                            <div class="mt-8 flex justify-center space-x-4">
+                                <div class="bg-white p-2 rounded-md shadow-sm flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                    </svg>
+                                    <span class="text-xs font-medium">4.9/5 Rating</span>
+                                </div>
+                                <div class="bg-white p-2 rounded-md shadow-sm flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <span class="text-xs font-medium">Verified</span>
+                                </div>
+                                <div class="bg-white p-2 rounded-md shadow-sm flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    <span class="text-xs font-medium">Fast Support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Why Other Solutions Fall Short</h3>
+                    <p class="text-lg text-gray-700 mb-6">
+                        Other AI tools force you to repeat the same prompts over and over, wasting time and increasing the risk of mistakes. They lack the ability to chain prompts for complex workflows.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-md">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-700">
+                                        Most AI tools are designed for single-use prompts, not reusable workflows that save you time.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-md">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-700">
+                                        Competitors charge premium prices for basic features, making AI automation cost-prohibitive.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-md">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-700">
+                                        Complex interfaces make it difficult to create and manage AI workflows efficiently.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Product Introduction + Benefits -->
+    <section id="features" class="gradient-bg py-16 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">Powerful Features</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    AI Flow Chat lets you create reusable AI workflows in minutes
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Automate repetitive tasks, chain prompts, and generate text or images effortlessly.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="bg-white p-6 rounded-xl shadow-xl relative overflow-hidden">
+                        <!-- Decorative elements -->
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-blue-50 blob -mr-20 -mt-20"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-purple-50 blob -ml-16 -mb-16"></div>
+                        
+                        <div class="relative">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div class="text-sm font-medium text-gray-500">AI Flow Chat</div>
+                            </div>
+                            
+                            <div class="border-b pb-4 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <div class="font-medium">Content Creation Assistant</div>
+                                    <div class="flex space-x-2">
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Reusable</span>
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">3-Step Chain</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-blue-500 text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-xs font-bold">1</div>
+                                        <div class="text-sm font-medium">Topic Research</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-gray-100">
+                                        <p class="text-sm">Research the latest trends in [TOPIC]</p>
+                                    </div>
+                                    <div class="mt-2 flex justify-end">
+                                        <div class="text-xs text-gray-500">Output → Step 2</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                    </svg>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-purple-500 text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-xs font-bold">2</div>
+                                        <div class="text-sm font-medium">Outline Generation</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-gray-100">
+                                        <p class="text-sm">Create a detailed outline for an article about [RESULTS]</p>
+                                    </div>
+                                    <div class="mt-2 flex justify-end">
+                                        <div class="text-xs text-gray-500">Output → Step 3</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                    </svg>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-xs font-bold">3</div>
+                                        <div class="text-sm font-medium">Full Article</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-gray-100">
+                                        <p class="text-sm">Write a complete article based on [OUTLINE]</p>
+                                    </div>
+                                    <div class="mt-2 flex justify-end">
+                                        <div class="text-xs text-gray-500">Final Output</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+                                    Run Workflow
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="space-y-6">
+                        <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                            <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Reusable Workflows</h3>
+                            <p class="text-gray-600">Create a workflow once and run it as many times as you need with different inputs.</p>
+                        </div>
+                        <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                            <div class="bg-purple-100 text-purple-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Chain Multiple Prompts</h3>
+                            <p class="text-gray-600">Connect AI prompts together to create sophisticated multi-step workflows.</p>
+                        </div>
+                        <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                            <div class="bg-green-100 text-green-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Text & Image Output</h3>
+                            <p class="text-gray-600">Generate both text and images seamlessly within your workflows.</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button class="btn-secondary bg-white text-black border border-black px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-50">
+                            See Examples
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Qualification Section -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="container mx-auto">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">Who This Is For</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Professionals</h3>
+                        <p class="text-gray-600">Who need to streamline their AI-powered workflows</p>
+                        <div class="mt-4 pt-4 border-t border-blue-100">
+                            <ul class="text-sm text-left">
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Consultants</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Marketers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Researchers</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Creators</h3>
+                        <p class="text-gray-600">Who want to automate content creation processes</p>
+                        <div class="mt-4 pt-4 border-t border-purple-100">
+                            <ul class="text-sm text-left">
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Writers</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Designers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>YouTubers</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Businesses</h3>
+                        <p class="text-gray-600">Looking to scale AI operations efficiently</p>
+                        <div class="mt-4 pt-4 border-t border-green-100">
+                            <ul class="text-sm text-left">
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Startups</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Agencies</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>E-commerce</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg inline-block shadow-sm">
+                    <p class="text-gray-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        If you're not ready to streamline your AI workflows or don't use AI regularly, this might not be for you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Offer + Value Stack -->
+    <section class="gradient-bg py-16 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center">What You'll Get</h2>
+                <div class="bg-white p-8 rounded-xl shadow-xl">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1 bg-green-100 p-2 rounded-full">
+                                <svg class="h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">Module 1: Build reusable AI workflows</h3>
+                                <p class="text-gray-600 mt-1">Create workflows once and use them repeatedly with different inputs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1 bg-green-100 p-2 rounded-full">
+                                <svg class="h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">Module 2: Chain multiple prompts for complex tasks</h3>
+                                <p class="text-gray-600 mt-1">Connect AI prompts together to create sophisticated multi-step workflows</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1 bg-green-100 p-2 rounded-full">
+                                <svg class="h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">Module 3: Output text and images seamlessly</h3>
+                                <p class="text-gray-600 mt-1">Generate both text and visual content within your workflows</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-5 bg-blue-50 rounded-lg border border-blue-100">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <p class="ml-3 text-blue-800">
+                                You'll get access to a user-friendly platform where you can customize prompts, run workflows, and see results instantly.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <a href="#start" class="btn-primary bg-black text-white px-8 py-4 rounded-md font-bold text-lg inline-block">
+                            Start for Free
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Personal Story -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/3">
+                        <div class="relative">
+                            <div class="bg-blue-100 w-48 h-48 rounded-full mx-auto overflow-hidden relative z-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                                <div class="bg-yellow-100 w-12 h-12 rounded-full -ml-20 mt-12"></div>
+                                <div class="bg-green-100 w-16 h-16 rounded-full ml-24 -mt-16"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h2 class="text-3xl font-bold mb-4">Why trust us?</h2>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Our team has spent years automating AI processes for businesses, saving them thousands of hours in repetitive work. We've helped companies reduce their AI workflow time by over 80%.
+                        </p>
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <p class="text-lg text-blue-800 italic">
+                                "AI Flow Chat was built to solve the exact problems we faced—now it's your turn to experience the same efficiency."
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center">
+                            <div class="flex -space-x-2">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-bold">JD</div>
+                                <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-bold">AS</div>
+                                <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-bold">MK</div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium">The AI Flow Chat Team</p>
+                                <p class="text-xs text-gray-500">AI Automation Experts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Pricing -->
+    <section id="pricing" class="gradient-bg py-16 px-6 md:px-12 lg:px-24 relative">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4 text-center">Simple, Transparent Pricing</h2>
+                <p class="text-lg text-gray-600 mb-12 text-center">Choose the plan that works best for your needs</p>
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all hover:scale-105">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">AI Flow Chat</h3>
+                                <div class="flex items-baseline mb-6">
+                                    <span class="text-5xl font-bold">$20</span>
+                                    <span class="text-gray-600 ml-2">/month</span>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                                Popular Choice
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Unlimited reusable workflows</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Chain up to 5 prompts per workflow</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Text and image generation</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>10 starter templates</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Email support</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 line-through">Others charge $99/month for similar tools</p>
+                            </div>
+                        </div>
+                        
+                        <a href="#start" class="btn-primary bg-black text-white px-8 py-4 rounded-md font-bold text-lg w-full text-center block">
+                            Start for Free
+                        </a>
+                        
+                        <p class="text-center text-sm text-gray-500 mt-4">No credit card required to start</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Section 9: Enterprise Solution -->
+      <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-lg relative overflow-hidden">
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full -mr-32 -mt-32 opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-green-50 rounded-full -ml-24 -mb-24 opacity-70"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="w-full md:w-2/3">
+                                <h3 class="text-2xl font-bold mb-4">Need a Custom Enterprise Solution?</h3>
+                                <p class="text-lg text-gray-700 mb-6">
+                                    For teams and businesses with advanced needs, we offer custom enterprise solutions with dedicated support, advanced features, and tailored workflows.
+                                </p>
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-start">
+                                        <svg class="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Unlimited workflow complexity</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <svg class="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Dedicated account manager</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <svg class="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Custom API integrations</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/3">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <h4 class="text-lg font-semibold mb-4">Schedule a Consultation</h4>
+                                    <form>
+                                        <div class="mb-4">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Name</label>
+                                            <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Email</label>
+                                            <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1" for="company">Company</label>
+                                            <input type="text" id="company" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your company">
+                                        </div>
+                                        <button type="button" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors">
+                                            Request Demo
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: FAQ -->
+    <section id="faq" class="py-16 px-6 md:px-12 lg:px-24 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+                
+                <div class="space-y-6">
+                    <div class="faq-item bg-white p-6 rounded-lg shadow-md" x-data="{ open: false }">
+                        <button class="flex justify-between items-center w-full text-left focus:outline-none" onclick="this.parentElement.classList.toggle('accordion-open')">
+                            <h3 class="text-xl font-semibold">What is AI Flow Chat?</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600">
+                                AI Flow Chat is a platform that allows you to create reusable AI workflows by chaining multiple prompts together. This helps you automate repetitive AI tasks, saving you time and ensuring consistent results.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-white p-6 rounded-lg shadow-md" x-data="{ open: false }">
+                        <button class="flex justify-between items-center w-full text-left focus:outline-none" onclick="this.parentElement.classList.toggle('accordion-open')">
+                            <h3 class="text-xl font-semibold">How does workflow chaining work?</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600">
+                                Workflow chaining connects multiple AI prompts together, where the output of one prompt becomes the input for the next. This allows you to create sophisticated multi-step processes that would otherwise require manual intervention between each step.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-white p-6 rounded-lg shadow-md" x-data="{ open: false }">
+                        <button class="flex justify-between items-center w-full text-left focus:outline-none" onclick="this.parentElement.classList.toggle('accordion-open')">
+                            <h3 class="text-xl font-semibold">Do I need technical skills to use AI Flow Chat?</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600">
+                                No technical skills are required. Our user-friendly interface makes it easy to create and manage workflows without any coding knowledge. We also provide templates to help you get started quickly.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-white p-6 rounded-lg shadow-md" x-data="{ open: false }">
+                        <button class="flex justify-between items-center w-full text-left focus:outline-none" onclick="this.parentElement.classList.toggle('accordion-open')">
+                            <h3 class="text-xl font-semibold">Can I try AI Flow Chat before purchasing?</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600">
+                                Yes, we offer a free trial that allows you to explore the platform and create your first workflows without entering any payment information. This gives you a chance to see how AI Flow Chat can benefit your specific needs.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-white p-6 rounded-lg shadow-md" x-data="{ open: false }">
+                        <button class="flex justify-between items-center w-full text-left focus:outline-none" onclick="this.parentElement.classList.toggle('accordion-open')">
+                            <h3 class="text-xl font-semibold">What kind of support do you offer?</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600">
+                                We provide email support for all users, with priority support for paid plans. Enterprise customers receive dedicated account management and personalized onboarding. Our knowledge base also includes tutorials and best practices to help you get the most out of the platform.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <p class="text-lg text-gray-600 mb-6">Still have questions?</p>
+                    <a href="#" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
+                        Contact our support team
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Testimonials -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">What Our Users Say</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-6 rounded-xl shadow-md relative">
+                        <!-- Decorative quote mark -->
+                        <div class="absolute top-4 left-4 text-blue-200 opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="mb-6 pt-6">
+                            <p class="text-gray-700 italic">
+                                "AI Flow Chat has completely transformed how I create content. What used to take me hours now takes minutes, and the quality is even better. The ability to chain prompts together is a game-changer."
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center text-blue-600 font-bold mr-4">
+                                SM
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Sarah M.</h4>
+                                <p class="text-sm text-gray-500">Content Creator</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-6 rounded-xl shadow-md relative">
+                        <!-- Decorative quote mark -->
+                        <div class="absolute top-4 left-4 text-purple-200 opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="mb-6 pt-6">
+                            <p class="text-gray-700 italic">
+                                "As a marketing agency, we need to create consistent content at scale. AI Flow Chat has helped us automate our workflows and deliver better results for our clients in less time."
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-purple-600 font-bold mr-4">
+                                JD
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">James D.</h4>
+                                <p class="text-sm text-gray-500">Marketing Director</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl shadow-md relative">
+                        <!-- Decorative quote mark -->
+                        <div class="absolute top-4 left-4 text-green-200 opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="mb-6 pt-6">
+                            <p class="text-gray-700 italic">
+                                "The templates provided by AI Flow Chat gave me a head start, and I was able to customize them for my specific needs. Now I have a set of workflows that save me hours every week."
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center text-green-600 font-bold mr-4">
+                                AL
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Alex L.</h4>
+                                <p class="text-sm text-gray-500">Freelance Writer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-6 rounded-xl shadow-md relative">
+                        <!-- Decorative quote mark -->
+                        <div class="absolute top-4 left-4 text-yellow-200 opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="mb-6 pt-6">
+                            <p class="text-gray-700 italic">
+                                "Our research team uses AI Flow Chat to process and analyze data more efficiently. The ability to chain multiple AI models together has significantly improved our workflow."
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-600 font-bold mr-4">
+                                RK
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Rachel K.</h4>
+                                <p class="text-sm text-gray-500">Research Analyst</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-center">
+                    <div class="flex space-x-2">
+                        <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
+                        <span class="w-3 h-3 bg-gray-300 rounded-full"></span>
+                        <span class="w-3 h-3 bg-gray-300 rounded-full"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: CTA -->
+    <section class="gradient-bg py-16 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        
+        <!-- Decorative shapes -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full -ml-32 -mt-32 opacity-50"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-100 rounded-full -mr-40 -mb-40 opacity-50"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your AI Workflow?</h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    Join thousands of professionals who are saving hours every week with AI Flow Chat.
+                </p>
+                
+                <div class="bg-white p-8 rounded-xl shadow-xl mb-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="w-full md:w-2/3 text-left">
+                            <h3 class="text-2xl font-bold mb-2">Start for Free Today</h3>
+                            <p class="text-gray-600">
+                                No credit card required. Get full access to all features for 7 days.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-3">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Unlimited workflows
+                                </span>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    10 starter templates
+                                </span>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Full feature access
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3">
+                            <a href="#start" class="btn-primary bg-black text-white px-8 py-4 rounded-md font-bold text-lg w-full text-center block">
+                                Start Free Trial
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-600">
+                    Join over 10,000+ users who have already transformed their AI workflows
+                </p>
+                
+                <div class="mt-8 flex justify-center space-x-6">
+                    <div class="flex -space-x-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-xs font-bold">JD</div>
+                        <div class="w-10 h-10 rounded-full bg-green-100 border-2 border-white flex items-center justify-center text-xs font-bold">SM</div>
+                        <div class="w-10 h-10 rounded-full bg-purple-100 border-2 border-white flex items-center justify-center text-xs font-bold">AL</div>
+                        <div class="w-10 h-10 rounded-full bg-yellow-100 border-2 border-white flex items-center justify-center text-xs font-bold">RK</div>
+                        <div class="w-10 h-10 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-bold">+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6 md:px-12 lg:px-24">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="https://aiflowchat.com/" class="text-2xl font-bold flex items-center mb-4">
+                        <span class="bg-white text-black w-8 h-8 rounded-md flex items-center justify-center mr-2">A</span>
+                        AI Flow Chat
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        Create reusable AI workflows once, run them forever.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Enterprise</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 AI Flow Chat. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionButtons = document.querySelectorAll('.faq-item button');
+            
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    
+                    // Close all other accordions
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('accordion-open');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b0829ac320739e',t:'MTc0NjQ1MDk2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
