@@ -10,29 +10,23 @@
       margin: 0;
       background-color: #f4f4f4;
     }
-    /* Menu bar styling */
-    .menu-bar {
+    /* Header section styling */
+    header {
       background-color: #333;
-      padding: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 20px;
+      text-align: center;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    .menu-bar h1 {
+    header h1 {
       color: #fff;
-      margin: 0;
-      font-size: 24px;
-      display: inline-block;
-      vertical-align: middle;
+      margin: 0 0 15px 0;
+      font-size: 28px;
     }
-    .menu-bar select {
+    header select {
       padding: 10px;
       font-size: 16px;
       border-radius: 5px;
       width: 300px;
-      margin-left: 20px;
-      vertical-align: middle;
     }
     /* Iframe styling */
     iframe {
@@ -56,7 +50,7 @@
   </style>
 </head>
 <body>
-  <div class="menu-bar">
+  <header>
     <h1>Landing Pages Commissions</h1>
     <select id="contentDropdown" onchange="loadContent()">
       <option value="">Select Content</option>
@@ -83,7 +77,7 @@
         <option value="siteimages/Profile.png">Profile (PNG)</option>
       </optgroup>
     </select>
-  </div>
+  </header>
 
   <iframe id="contentFrame" src=""></iframe>
 
