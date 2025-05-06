@@ -7,26 +7,42 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
       background-color: #f4f4f4;
     }
-    h1 {
-      color: #333;
+    /* Menu bar styling */
+    .menu-bar {
+      background-color: #333;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    select {
+    .menu-bar h1 {
+      color: #fff;
+      margin: 0;
+      font-size: 24px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .menu-bar select {
       padding: 10px;
       font-size: 16px;
       border-radius: 5px;
       width: 300px;
-      margin-bottom: 20px;
+      margin-left: 20px;
+      vertical-align: middle;
     }
+    /* Iframe styling */
     iframe {
       width: 100%;
-      max-width: 900px;
       height: 900px;
       border: 1px solid #ccc;
       border-radius: 5px;
       background-color: #fff;
+      display: block;
+      margin: 20px auto;
     }
     /* Style for images to stretch within iframe */
     iframe.image-frame {
@@ -40,33 +56,34 @@
   </style>
 </head>
 <body>
-  <h1>Landing Pages Commissions</h1>
-
-  <select id="contentDropdown" onchange="loadContent()">
-    <option value="">Select Content</option>
-    <optgroup label="Landing Pages">
-      <option value="Coaching-home2-aqua.html">Coaching Home 2 Aqua</option>
-      <option value="CoachingHomeAlt.html">Coaching Home Alt</option>
-      <option value="coaching-home.html">Coaching Home</option>
-      <option value="flow1.html">Flow 1</option>
-      <option value="flow2.html">Flow 2</option>
-      <option value="fom_lp1.html">FOM Landing Page 1</option>
-      <option value="fom_lp2.html">FOM Landing Page 2</option>
-      <option value="fom_lp3.html">FOM Landing Page 3</option>
-      <option value="fom_lp5.html">FOM Landing Page 5</option>
-      <option value="Journal-aqua.html">Journal Aqua</option>
-      <option value="journal-aqua2.html">Journal Aqua 2</option>
-      <option value="JournalshomeOriginal.html">Journals Home Original</option>
-      <option value="Prompter.html">Prompter</option>
-      <option value="Selections.html">Selections</option>
-      <option value="TABW.html">TABW</option>
-    </optgroup>
-    <optgroup label="Images">
-      <option value="Cover.jpg">Cover (JPG)</option>
-      <option value="Cover.png">Cover (PNG)</option>
-      <option value="siteimages/Profile.png">Profile (PNG)</option>
-    </optgroup>
-  </select>
+  <div class="menu-bar">
+    <h1>Landing Pages Commissions</h1>
+    <select id="contentDropdown" onchange="loadContent()">
+      <option value="">Select Content</option>
+      <optgroup label="Landing Pages">
+        <option value="Coaching-home2-aqua.html">Coaching Home 2 Aqua</option>
+        <option value="CoachingHomeAlt.html">Coaching Home Alt</option>
+        <option value="coaching-home.html">Coaching Home</option>
+        <option value="flow1.html">Flow 1</option>
+        <option value="flow2.html">Flow 2</option>
+        <option value="fom_lp1.html">FOM Landing Page 1</option>
+        <option value="fom_lp2.html">FOM Landing Page 2</option>
+        <option value="fom_lp3.html">FOM Landing Page 3</option>
+        <option value="fom_lp5.html">FOM Landing Page 5</option>
+        <option value="Journal-aqua.html">Journal Aqua</option>
+        <option value="journal-aqua2.html">Journal Aqua 2</option>
+        <option value="JournalshomeOriginal.html">Journals Home Original</option>
+        <option value="Prompter.html">Prompter</option>
+        <option value="Selections.html">Selections</option>
+        <option value="TABW.html">TABW</option>
+      </optgroup>
+      <optgroup label="Images">
+        <option value="Cover.jpg">Cover (JPG)</option>
+        <option value="Cover.png">Cover (PNG)</option>
+        <option value="siteimages/Profile.png">Profile (PNG)</option>
+      </optgroup>
+    </select>
+  </div>
 
   <iframe id="contentFrame" src=""></iframe>
 
