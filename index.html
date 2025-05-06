@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Pages Commissions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 900px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    /* Style for images to stretch within iframe */
+    iframe.image-frame {
+      display: block;
+    }
+    img.stretch {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Stretches image to fit while preserving aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <h1>Landing Pages Commissions</h1>
+
+  <select id="contentDropdown" onchange="loadContent()">
+    <option value="">Select Content</option>
+    <optgroup label="Landing Pages">
+      <option value="Coaching-home2-aqua.html">Coaching Home 2 Aqua</option>
+      <option value="CoachingHomeAlt.html">Coaching Home Alt</option>
+      <option value="coaching-home.html">Coaching Home</option>
+      <option value="flow1.html">Flow 1</option>
+      <option value="flow2.html">Flow 2</option>
+      <option value="fom_lp1.html">FOM Landing Page 1</option>
+      <option value="fom_lp2.html">FOM Landing Page 2</option>
+      <option value="fom_lp3.html">FOM Landing Page 3</option>
+      <option value="fom_lp5.html">FOM Landing Page 5</option>
+      <option value="Journal-aqua.html">Journal Aqua</option>
+      <option value="journal-aqua2.html">Journal Aqua 2</option>
+      <option value="JournalshomeOriginal.html">Journals Home Original</option>
+      <option value="Prompter.html">Prompter</option>
+      <option value="Selections.html">Selections</option>
+      <option value="TABW.html">TABW</option>
+    </optgroup>
+    <optgroup label="Images">
+      <option value="Cover.jpg">Cover (JPG)</option>
+      <option value="Cover.png">Cover (PNG)</option>
+      <option value="siteimages/Profile.png">Profile (PNG)</option>
+    </optgroup>
+  </select>
+
+  <iframe id="contentFrame" src=""></iframe>
+
+  <script>
+    function loadContent() {
+      const dropdown = document.getElementById('contentDropdown');
+      const frame = document.getElementById('contentFrame');
+      const selectedValue = dropdown.value;
+
+      if (selectedValue) {
+        // Check if the selected value is an image (ends with .jpg, .png, etc.)
+        const isImage = /\.(jpg|png|jpeg|gif)$/i.test(selectedValue);
+        
+        if (isImage) {
+          // For images, set the iframe to load a blank page with the image stretched
+          frame.contentDocument.body.innerHTML = `<img src="${selectedValue}" class="stretch">`;
+          frame.classList.add('image-frame');
+        } else {
+          // For HTML pages, load directly in the iframe
+          frame.src = selectedValue;
+          frame.classList.remove('image-frame');
+        }
+      } else {
+        // Clear the iframe if no selection
+        frame.src = '';
+        frame.classList.remove('image-frame');
+      }
+    }
+  </script>
+</body>
+</html>
